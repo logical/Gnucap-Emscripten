@@ -1,0 +1,46 @@
+#jfet test circuit
+.param foo=2
+.model asd njf cgs=1f cgd=1f
+.model psd pjf cgs=1f cgd=1f
+.list
+j1 2 1 0 asd area=foo
+v1 3 0 dc 10
+r1 2 3 10k
+v2 1 0 pulse(0 -1 5p 1p) DC 0 AC 1 
+*>.list
+*>.print op v(nodes) i(v*)
+*>.op trace iter
+.op
+*>.print op vgs(j1) vgd(j1)
+*>.op
+*>.print op  ig(j1) id(j1) is(j1) igd(j1)
+*>.op
+*>.print op gm(j1) gds(j1) ggs(j1) ggd(j1)
+*>.op
+*>.print op qgs(j1) qgd(j1) cqgs(j1) cqgd(j1)
+*>.op
+*>.print op p(j1) p(r1) p(v1)
+*>.op
+
+*>.fault v2=1
+*>.print op v(1) v(2)
+*>.op 0 100 25
+*>.unfault
+*>.op 0 100 25
+
+.print dc v(1) v(2)
+*>.print dc + iter(0)
+.dc v2 -2 2 .2
+
+.param foo=1
+.option method=trap
+.print tran v(1) v(2)
+*>.print tran + iter(0)
+*>.option dtmin=1f
+.tran 1p 50p 0 trace rejected
+
+*.op
+*.print ac v(1) v(2)
+*.ac dec 1 1 1g
+.end
+

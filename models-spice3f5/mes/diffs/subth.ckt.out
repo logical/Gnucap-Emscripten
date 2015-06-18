@@ -1,0 +1,11 @@
+Mesfet level 1 subthreshold characteristics 
+.print DC vids#branch 
+                      ^ ? need device or node
+#           i(vids)   
+-3.         0.        
+-2.5        0.        
+-2.         0.        
+-1.5        0.        
+-1.         42.498u   
+-0.5        232.48u   
+ 0.         457.54u   

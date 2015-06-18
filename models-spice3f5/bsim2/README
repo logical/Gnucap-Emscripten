@@ -1,0 +1,13 @@
+BSIM-2 bug fixes:
+
+bsim2.c
+
+diff b2ld.c.orig b2ld.c      
+40,41c40,41
+<     double capbd;
+<     double capbs;
+---
+>     double capbd = 0;
+>     double capbs = 0;
+
+Uninitialized variable was causing convergence failures in DC.

@@ -1,0 +1,163 @@
+This package contains the complete set of models from Spice 3f5
+downloaded from Berkeley.
+
+The models are licensed under Berkeley's license.  See the file
+COPYING for details.  Note that this is not GPL.
+
+The "Include" directory contains files from Spice 3f5.  A few of them
+have been modified with an #ifdef to make them optionally compatible
+with Spice 3e2 models.  Some of them are stubs.
+
+There are no modifications to any of the model code, other than to add
+a "Makefile" and "wrapper.h" for each one.
+
+There are no BSIM3 or later models, because they were not included
+with Spice 3f5.  The latest BSIM model here is BSIM2.  If you need the
+more recent BSIM models, you need the "gnucap-bsim" package, which has
+all of them.
+
+They have been minimally tested.  The semiconductor models appear to
+work.  Minimal testing means that one or two tests were run on some of
+them, and they appear to give believable reslts.  A few tests were run
+comparing to references supplied by Berkeley, and the results match
+within set tolerances.
+
+Simple models like resistors and capacitors work only if used with a
+.model statement.  This is a parser issue that will be fixed.  They
+are included here for completeness.  Unless you need the exact spice
+model, they are not recommended.  The gnucap native code has all the
+features and more, and gives significantly better performance.
+
+Transmission line models have not been tested.  Some of them load, but
+that is all.  They probably don't work.
+
+Some models fail on attachment.  Most of the ones that fail would not
+be recommended even if they did work.  The gnucap native models have
+better performance.
+
+
+BUILD INSTRUCTIONS
+
+This applies to this snapshot.  It will change.
+
+If you unpacked in the same directory as the gnucap source, a new
+directory will appear there.  If so, the links should be set to build.
+Just cd to models-bsim and type "make".
+
+If you unpacked anywhere else, you need to configure it manually.
+The only configuration needed is to make a symbolic link to the 
+gnucap sources as "Gnucap".
+
+The command will be something like:
+   ln -s ../gnucap-xxxx/src Gnucap
+but substitute the real name for xxxx.
+
+If you are building with a compiler other than gcc and g++, you will
+need to change the "Make2" file.  If you are cross-compiling with
+mingw, update the "Make2" symlink to point to "Make2.mingw".  For
+anything else, delete the symlink and make a new "Make2" as a copy of
+"Make2.gcc", and edit the copy to your needs.
+
+The Makefile supports only "make all" and "make clean".  It doesn't
+yet install.  It has not yet been determined how the final install
+should be arranged.  Your feedback will be appreciated.
+
+When you run "make", it builds a ".so" file in each directory.  These
+can be placed anywhere that is convenient.  You can use them in gnucap
+with the "attach" command.  If there are no slashes in the name, it
+uses the environment variable LD_LIBRARY_PATH to locate them.  If the
+name has a slash, the usual rules for finding files apply.
+
+To install, you can copy the ".so" files to where you want them.
+
+STATUS
+
+asrc:	-	undefined symbol: CKTfndBranch
+bjt:	+++++	supported (minor mods)
+bsim1:	+++-	see below
+bsim2:	++++	tested
+cap:	+++-	works with model, parse problem without
+cccs:	-	undefined symbol: CKTfndBranch
+ccvs:	-	undefined symbol: CKTfndBranch
+csw:	-	undefined symbol: CKTfndBranch
+dio:	+++++	supported (minor mods)
+ind:	-	undefined symbol: CKTtypelook
+isrc:	+-	loads, probably parse problem, not tested
+jfet:	+++++	supported
+ltra:	+	loads, not tested
+mes:	+++
+mos1:	+++++	supported
+mos2:	+++++	supported
+mos3:	+++++	supported
+mos6:	+++++	supported, no AC, like in Spice
+res:	+-	parse problem, probably works with model like cap
+sw:	+++-	tested, no time step control, not recommended
+tra:	+-	parse problem
+urc:	-	undefined symbol: CKTdltMod
+vccs:	+-	loads, probably parse problem, not tested
+vcvs:	+-	parse problem
+vsrc:	+-	loads, probably parse problem, not tested
+
+"-" means there is a problem.
+
+"+", "loads" means that it loads with no reported error.
+
+"++" means passes a quick check, and looks sane.
+
+"+++" means passes a real check, and looks sane.
+
+"++++", "tested" means that it has been tested, with results confirmed 
+against an appropriate reference.
+
+"+++++", "supported" means that it has been tested and works correctly, and
+included in multiple regressions.
+
+
+More detailed status:
+
+bsim1:
+Small differences between this bsim1.so vs. d_mos4.model.
+d_mos4.model matches NG-spice, the program.
+This bsim1.so matches the bsim1.so from NG-spice.
+Differences do not appear to be significant, from a circuit viewpoint,
+but are different enough to wonder why.
+
+dio:
+In Spice-2, setting bv=0 is equivalent to not setting it.
+In Spice-3, setting bv=0 really sets bv to zero, leading to
+convergence problems in the breakdown region.  These problems show in
+NG-spice, too, so it isn't the plugin mechanism.
+
+sw:
+It has the same problems in gnucap as it has in spice.
+No time step control, bad results and convergence failures.
+Good correlation with Spice, even when incorrect.
+
+
+MODIFICATIONS:
+
+It is intended that spice models work without modification, but some
+have bugs.
+
+Small signal parameters bug:
+
+Spice does not allow AC after transient, but gnucap does, exposing a
+bug in some models in storage of parameters for.  The parameters
+stored are messed up and need to be patched.  In Spice, the
+sensitivity command required proper saved values, so it is fixed in
+this case.  For some reason I don't understand, there is a "if
+(SenCond)" statement that puts the fix only there.  To fix, change to
+"if (1)" so those values are always saved.
+
+This applies to "bjt" and "dio", but not all have been tested for
+this.
+
+The symptom is incorrect AC results after a transient analysis when
+the dynamic part of the model (capacitance) has a big effect.  It
+doesn't show after a low frequency transient analysis, or after a DC
+or OP analysis.
+
+bsim2 variable initialization:
+Some variables were not initialized, leading to convergence failure.
+
+

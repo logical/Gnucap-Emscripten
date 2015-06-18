@@ -1,0 +1,35 @@
+Mesfet level 1 subthreshold characteristics
+* from ngspice, modified
+.param area=1.4
+.param vt=-1.3
+
+Vds 1 0 dc 0.1
+vids 1 2 dc 0
+vref 1 4 dc 0
+vpro 1 5 dc 0
+Vgs 3 0 dc 0
+
+.subckt sub (2 3 1)
+z1 2 3 1 mesmod area=area
+.model mesmod nmf level=1 rd=46 rs=46 vt0=vt
++ lambda=0.03 alpha=3 beta=1.4e-3
+.ends
+
+x1 2 3 0 sub area=area vt=-1.3
+x2 4 3 0 sub area=1.4  vt=-1.3
+x3 5 3 0 sub area=1.4  vt=vt
+
+.param area=3.5
+.param vt=-3.3
+.print DC i(vids) i(vref) i(vpro)
+.dc vgs -3 0 0.5
+
+.param area=2.0
+.param vt=-2.3
+.dc vgs -3 0 0.5
+
+.param area=1.4
+.param vt=-1.3
+.dc
+
+.end

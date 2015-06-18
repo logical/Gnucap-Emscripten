@@ -1,0 +1,24 @@
+# spice capacitor test
+
+.option list method=euler
+
+v1 1 0 pulse(1 0 200n) DC 3 AC .3
+.capacitor c1 1 2 .1n ic=2
+r1b 2 0 2k
+
+v2 3 0 pulse(1 0 200n) DC 3 AC .3
+.model modelc c
+.spice_cap c2 3 4 modelc capacitance=.1n ic=2
+r1b 4 0 2k
+
+.list
+
+.print op v(nodes)
+.op
+.print tran v(nodes) dt(c*)  v(c*) qcap(c*) i(c1) ccap(c2)
+.tran 0 .5u 100n skip 5 trace all uic
+.option method=trap
+.tran trace all
+.tran 0 .5u 100n skip 5 trace all uic
+.tran 0 .5u 100n skip 5 trace all
+

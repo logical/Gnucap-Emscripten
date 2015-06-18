@@ -1,0 +1,31 @@
+# spice resistor test
+
+.option list
+.attach ./res.so
+
+v1 1 0 pulse(0 1 200n) DC 3 AC .3
+.resistor r1a 1 2 1k
+.resistor r1b 2 0 2k
+
+v2 3 0 pulse(0 1 200n) DC 3 AC .3
+.resistor r2a 3 4 1k
+.model rr r
+.spice_res r2b 4 0 rr resistance=2k
+
+.list
+
+.print op v(nodes)
+.op
+.print tran v(nodes)
+.tran 0 1u 100n
+.print ac v(nodes)
+.ac dec 2 100 100k
+
+.del r1a r2a
+c1 1 2 .1n
+c2 3 4 .1n
+
+.op
+.tran 0 1u 100n trace all
+.tran
+.ac dec 2 100 10Meg

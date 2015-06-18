@@ -1,0 +1,21 @@
+# spice capacitor test
+
+.option list method=trap
+
+v1 1 0 pulse(0 1 200n) DC 3 AC .3
+.capacitor c1 1 2 .1n
+r1b 2 0 2k
+
+v2 3 0 pulse(0 1 200n) DC 3 AC .3
+.model cc c
+.spice_cap c2 3 4 cc capacitance=.1n
+r1b 4 0 2k
+
+.list
+
+.print op v(nodes)
+.op
+.print tran v(nodes) dt(c1) q(c1) cap(c1) ioffset(c1) y(c1) v(c*)
+.tran 0 .5u 100n skip 5 trace all
+.print ac v(nodes) vp(nodes)
+.ac dec 2 100 10Meg

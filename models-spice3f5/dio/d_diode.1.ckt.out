@@ -1,0 +1,35 @@
+D: already installed, replacing
+stashing as D:0
+d: already installed, replacing
+stashing as d:0
+simple diode test 
+V1 ( 1 0 )  DC  10.  AC  1.
+R1 ( 1 2 )  100.K
+D1 ( 2 0 )  ddd 1
+.model ddd d ( af=1. bv=50 cjo=1.p eg=1.11 fc=0.5 ibv=0.001 is=10.f kf=0. m=0.5 n=1. rs=0. tt=0. vj=1. xti=3.)
+#           v(1)       v(2)       i(V1)      i(R1)      id(D1)     vd(D1)     req(D1)    cd(D1)     z(D1)      zraw(D1)   gd(D1)     z(2)      
+ 27.        10.        0.59396   -94.061u    94.06u     94.06u     0.59396    ??         1.5471p    274.22     274.22     0.0036367  274.22    
+#           v(1)       v(2)       i(V1)      i(R1)      id(D1)     vd(D1)     req(D1)    cd(D1)     z(D1)      zraw(D1)   gd(D1)     z(2)       iter(0)   
+-10.       -10.       -10.        0.        -20.01p    -10.01p    -10.        ??         301.51f    100.K      100.K      1.p        100.K      11.       
+-8.        -8.        -8.         0.        -16.01p    -8.01p     -8.         ??         333.33f    100.K      100.K      1.p        100.K      4.        
+-6.        -6.        -6.         0.        -12.01p    -6.01p     -6.         ??         377.96f    100.K      100.K      1.p        100.K      4.        
+-4.        -4.        -4.         0.        -8.01p     -4.01p     -4.         ??         447.21f    100.K      100.K      1.p        100.K      4.        
+-2.        -2.        -2.         0.        -4.01p     -2.01p     -2.         ??         577.35f    100.K      100.K      1.p        100.K      4.        
+ 0.         0.         0.         0.         0.         0.         0.         ??         1.p        100.K      100.K      1.3866p    100.K      5.        
+ 2.         2.         0.54568   -14.543u    14.543u    14.543u    0.54568    ??         1.4788p    1.7474K    1.7474K    562.29u    1.7474K    11.       
+ 4.         4.         0.56789   -34.321u    34.321u    34.321u    0.56789    ??         1.5102p    747.95     747.95     0.001327   747.95     7.        
+ 6.         6.         0.5797    -54.203u    54.203u    54.203u    0.5797     ??         1.5269p    474.9      474.9      0.0020957  474.9      6.        
+ 8.         8.         0.5878    -74.122u    74.122u    74.122u    0.5878     ??         1.5384p    347.73     347.73     0.0028658  347.73     6.        
+ 10.        10.        0.59396   -94.061u    94.06u     94.06u     0.59396    ??         1.5471p    274.22     274.22     0.0036367  274.22     5.        
+Gnucap   System status
+iterations: op=11, dc=67, tran=0, fourier=0, total=78
+transient timesteps: accepted=0, rejected=0, total=0
+nodes: user=2, subckt=0, model=0, total=2
+dctran density=100.0%, ac density=100.0%
+#           v(1)       v(2)       i(V1)      i(R1)      id(D1)     vd(D1)     req(D1)    cd(D1)     z(D1)      zraw(D1)   gd(D1)     z(2)      
+ 27.        10.        0.59396   -94.061u    94.06u     94.06u     0.59396    ??         1.5471p    274.22     274.22     0.0036367  274.22    
+Gnucap   System status
+iterations: op=11, dc=67, tran=0, fourier=0, total=89
+transient timesteps: accepted=0, rejected=0, total=0
+nodes: user=2, subckt=0, model=0, total=2
+dctran density=100.0%, ac density=100.0%

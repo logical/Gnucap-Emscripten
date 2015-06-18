@@ -1,0 +1,45 @@
+Q: already installed, replacing
+stashing as Q:0
+npn: already installed, replacing
+stashing as npn:0
+pnp: already installed, replacing
+stashing as pnp:0
+npn1: already installed, replacing
+stashing as npn1:0
+pnp1: already installed, replacing
+stashing as pnp1:0
+' bjt test 
+.model foo npn ()
+vcc ( 1 0 )  DC  30.
+rb1 ( 1 2 )  27.K
+rb2 ( 2 0 )  1.6K
+rc ( 3 1 )  10.K
+re ( 4 0 )  1.K
+q1 ( 3 2 4 0 )  foo 
+#           v(1)       v(2)       v(3)       v(4)      
+ 0.         0.         0.         0.         0.        
+-1.         30.        1.6657     21.673     0.84105   
+-2.         30.        1.6654     21.451     0.86344   
+-3.         30.        1.6651     21.274     0.88132   
+-4.         30.        1.665      21.175     0.8913    
+-5.         30.        1.665      21.151     0.89378   
+-6.         30.        1.665      21.149     0.8939    
+-7.         30.        1.665      21.149     0.8939    
+-8.         30.        1.665      21.149     0.8939    
+ 27.        30.        1.665      21.149     0.8939    
+#           v(1)       v(2)       v(3)       v(4)      
+ 27.        30.        1.665      21.149     0.8939    
+#           ice(q1)    ipi(q1)    imu(q1)    iceo(q1)   ipio(q1)   imuo(q1)  
+ 27.        ??         ??         ??         ??         ??         ??        
+#           ic(q1)     ib(q1)     ie(q1)     vbe(q1)    vbc(q1)   
+ 27.        885.05u    8.8505u   -893.9u     0.77105   -19.485    
+#           gm(q1)     gpi(q1)    gmu(q1)    gx(q1)     go(q1)    
+ 27.        0.034219   342.19u    1.p        0.         1.p       
+#           cpi(q1)    cmu(q1)    cbx(q1)    ccs(q1)   
+ 27.        0.         0.         0.         0.        
+#           i(rb1)     i(rb2)     i(rc)      i(re)     
+ 27.        0.0010494  0.0010406 -885.05u    893.9u    
+#           p(rb1)     p(rb2)     p(rc)      p(re)     
+ 27.        0.029736   0.0017325  0.0078332  799.06u   
+#           i(vcc)     p(vcc)    
+ 27.       -0.0019345 -0.058035  
