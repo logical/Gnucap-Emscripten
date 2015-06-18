@@ -78,5 +78,8 @@ manifest:
 	(cd main; ${MAKE} manifest)
 	(cd apps; ${MAKE} manifest)
 
+emscripten:g++
+	(./Makeem++)
+
 nothing:
 

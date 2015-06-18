@@ -20,16 +20,13 @@ can be extracted and built separately.
 
 "modelgen" is the old model compiler, which now links to libgnucap.so.
 
-Installation (still "make install") installs the parts as expected.
-It also installs the header files in $PREFIX/include/gnucap, to build
-plugins.
 
-Although it does not use autoconf, the configure/make procedure is the
-same as it would be with autoconf.
+EMSCRIPTEN COMPILE
+----
 
-Model plugin tarballs have not been updated yet, but have been
-repackaged for date consistency.
+ ./configure
+ make emscripten
+ 
+First the make script will compile the binary using g++. This is necessary because the binary build the models that are needed for emscripten. Next the makefile runs Makeem++. Makeeem++ contains the javascript build configuration.
 
-This snapshot lifts the biggest block that has been getting in the way
-of a stable release.
-
+The result is 4MB and it seems like it will run in nodejs but I am currently having trouble getting it to run in Webtronix. This is probably because of a difference in Emscripten versions. If you don't need some of the models in the apps directory just delete the name from the list of filenames. 

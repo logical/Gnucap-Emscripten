@@ -185,6 +185,13 @@ inline char* dlerror()
   #define sigjmp_buf jmp_buf
   #define siglongjmp(a,b) longjmp(a,b)
   #define sigsetjmp(a,b) setjmp(a)
+#elif defined(EMSCRIPTEN)
+  #undef sigjmp_buf
+  #undef siglongjmp
+  #undef sigsetjmp
+  #define sigjmp_buf jmp_buf
+  #define siglongjmp(a,b)
+  #define sigsetjmp(a,b) 0
 #endif
 
 #if !defined(SIGNALARGS)

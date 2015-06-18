@@ -23,6 +23,7 @@
 /*--------------------------------------------------------------------------*/
 // spice includes
 extern "C" {
+  #include <complex.h>
   #define _complex CompleX
   #define NODE NodE
   #define public PubliC
@@ -1301,7 +1302,7 @@ void DEV_SPICE::tr_load()
 
   int ihit[MATRIX_NODES+OFFSET];
   int jhit[MATRIX_NODES+OFFSET];
-
+  double real,imag;
   std::fill_n(ihit, matrix_nodes()+OFFSET, 0);
   std::fill_n(jhit, matrix_nodes()+OFFSET, 0);
 
@@ -1320,7 +1321,9 @@ void DEV_SPICE::tr_load()
 	  int njj = nj-OFFSET;
 	  trace2("", jj, nj);
 	  trace2("", _matrix[nii][njj].real(), _matrix[nii][njj].imag());
-	  tr_load_point(_n[ii], _n[jj], &(_matrix[nii][njj].real()), &(_matrix[nii][njj].imag()));
+	  real = _matrix[nii][njj].real();
+	  imag = _matrix[nii][njj].imag();
+	  tr_load_point(_n[ii], _n[jj], &real, &imag);
 	}else{
 	  trace2("skip", jj, nj);
 	}
@@ -1336,7 +1339,7 @@ void DEV_SPICE::tr_unload()
 
   for (int ii = 0; ii < matrix_nodes(); ++ii) {untested();
     for (int jj = 0; jj < matrix_nodes(); ++jj) {untested();
-      _matrix[ii][jj].real() = 0;
+      _matrix[ii][jj].real(0);
     }
   }
   _sim->mark_inc_mode_bad();
@@ -1880,8 +1883,11 @@ static struct COMPLEX_TEST {
   COMPLEX_TEST() {
     COMPLEX x;
     COMPLEX* px = &x;
-    double* prx = &x.real();
-    double* pix = &x.imag();
+    double real,imag;
+    real=x.real();
+    imag=x.imag();
+    double* prx = &real;
+    double* pix = &imag;
     assert(reinterpret_cast<void*>(prx) == reinterpret_cast<void*>(px));
     assert(reinterpret_cast<void*>(pix-1) == reinterpret_cast<void*>(px));
   }

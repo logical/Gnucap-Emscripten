@@ -1,8 +1,8 @@
 #!/bin/bash
 set -x
 set -e
-
-EMSCRIPTEN_PATH="PUT YOUR EMSCRIPTEN PATH HERE "
+#PUT YOUR EMSCRIPTEN PATH HERE
+EMSCRIPTEN_PATH="/home/electron/packages/emsdk_portable/emscripten/master/"
 OPTIMIZE="-O2 -s USE_TYPED_ARRAYS=2 -s DISABLE_EXCEPTION_CATCHING=0 "
 CCP="$EMSCRIPTEN_PATH/em++"
 CC="$EMSCRIPTEN_PATH/emcc"
@@ -26,6 +26,10 @@ jfetic jfetload jfetmask jfetmdel jfetmpar
 jfetnoi jfetpar jfetpzld jfetset jfettemp jfettrun 
 )
 
+if [ ! -d "O" ]; then
+	mkdir O
+fi
+
 for CCFILE in ${SOURCES[@]}; do
  $CC  $CFLAGS -Wno-implicit-function-declaration -I../Include -I../Gnucap -c $CCFILE.c -o O/$CCFILE.bc 
 done
@@ -48,7 +52,7 @@ m_base_in m_base_math m_fft  m_spline
 ap_construct ap_convert ap_error ap_get ap_match ap_skip 
 l_ftos l_pmatch l_timer l_trim l_wmatch 
 io io_contr io_error io_findf io_out io_xopen 
-u_function u_lang u_nodemap u_opt1 u_opt2 
+u_lang u_nodemap u_opt1 u_opt2 
 u_parameter u_prblst u_probe u_sim_data u_xprobe 
 d_subckt d_logic d_logicmod 
 e_base e_card e_node e_model e_compon 
@@ -134,7 +138,7 @@ done
 cd O
 
 
-EMCC_DEBUG=1 $CC $OPTIMIZE  ../../lib/O/libgnucap.bc ../../models-spice3f5/jfet/O/d_jfet.bc ../../apps/O/libgnucap-default-plugins.bc  main.bc -o gnucap.html --embed-file temp 
+EMCC_DEBUG=1 $CC $OPTIMIZE  ../../lib/O/libgnucap.bc ../../models-spice3f5/jfet/O/d_jfet.bc ../../apps/O/libgnucap-default-plugins.bc  main.bc -o gnucap.js --embed-file temp 
 
 cd ../..
 
