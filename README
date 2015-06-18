@@ -22,7 +22,7 @@ can be extracted and built separately.
 
 
 EMSCRIPTEN COMPILE
-----
+-----
 
  ./configure
  make emscripten
