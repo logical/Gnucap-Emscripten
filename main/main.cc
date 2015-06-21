@@ -54,14 +54,19 @@ static void sign_on(void)
 /*--------------------------------------------------------------------------*/
 static void read_startup_files(void)
 {
+
   {
     std::string name = findfile(SYSTEMSTARTFILE, SYSTEMSTARTPATH, R_OK);
     if (name != "") {untested();
       CMD::command("include " + name, &CARD_LIST::card_list);
-    }else{
-      CMD::command(std::string("load " DEFAULT_PLUGINS), &CARD_LIST::card_list);
     }
+    
+    else{
+      //CMD::command(std::string("load " DEFAULT_PLUGINS), &CARD_LIST::card_list);
+    }
+    
   }
+
   {
     std::string name = findfile(USERSTARTFILE, USERSTARTPATH, R_OK);
     if (name != "") {untested();
@@ -173,32 +178,27 @@ static void process_cmd_line(int argc, const char *argv[])
 	  CMD::command(std::string("include ") + argv[ii++], &CARD_LIST::card_list);
 	}else{untested();
 	}
-      }else if (strcasecmp(argv[ii], "-b") == 0) {
-	try {
-	  ++ii;
-	  if (ii < argc) {
-	    CMD::command(std::string("< ") + argv[ii++], &CARD_LIST::card_list);
-	  }else{untested();
-	    CMD::command(std::string("< /dev/stdin"), &CARD_LIST::card_list);
-	  }
-	}catch (Exception& e) {
-	  error(bDANGER, e.message() + '\n');
-	  finish();
-	}
-	if (ii >= argc) {
-	  //CMD::command("end", &CARD_LIST::card_list);
-	  throw Exception_Quit("");
-	}else{untested();
-	}
-      }else if (strcasecmp(argv[ii], "-a") == 0) {
-	++ii;
-	if (ii < argc) {
-	  CMD::command(std::string("attach ") + argv[ii++], &CARD_LIST::card_list);
-	}else{untested();
-	}
-      }else{itested();
-	CMD::command(std::string("include ") + argv[ii++], &CARD_LIST::card_list);
-      }
+      }else 
+ 	if (strcasecmp(argv[ii], "-b") == 0) {
+			try {
+				++ii;
+				if (ii < argc) {
+					CMD::command(std::string("< ") + argv[ii++], &CARD_LIST::card_list);
+				}else{untested();
+					CMD::command(std::string("< /dev/stdin"), &CARD_LIST::card_list);
+				}
+			}catch (Exception& e) {
+				error(bDANGER, e.message() + '\n');
+				finish();
+			}
+			if (ii >= argc) {
+				//CMD::command("end", &CARD_LIST::card_list);
+				throw Exception_Quit("");
+			}else{untested();
+			}
+  }
+      
+
     }catch (Exception_Quit& e) {
       throw;
     }catch (Exception& e) {itested();
@@ -235,10 +235,12 @@ int main(int argc, const char *argv[])
 #endif
     }else{untested();
       finish();		/* error clean up (from longjmp()) */
-      //CMD::command("quit", &CARD_LIST::card_list);
+      CMD::command("quit", &CARD_LIST::card_list);
       exit(0);
     }
   }
+
+  
   {
     SET_RUN_MODE xx(rINTERACTIVE);
     CS cmd(CS::_STDIN);
@@ -253,31 +255,24 @@ int main(int argc, const char *argv[])
 	}catch (Exception_End_Of_Input& e) {
 	  error(bDANGER, e.message() + '\n');
 	  finish();
-	  //CMD::command("quit", &CARD_LIST::card_list);
-	  //exit(0);
+	  CMD::command("quit", &CARD_LIST::card_list);
+	  exit(0);
 	  break;
 	}catch (Exception& e) {
 	  error(bDANGER, e.message() + '\n');
 	  finish();
 	}
       }else{itested();
-	finish();		/* error clean up (from longjmp()) */
+	finish();		// error clean up (from longjmp()) 
       }
     }
   }
+  
+  
   }catch (Exception_Quit&) {
   }catch (Exception& e) {untested();
     error(bDANGER, e.message() + '\n');
   }
-  
-  //CARD_LIST::card_list.erase_all();
-  CMD::command("clear", &CARD_LIST::card_list);
-  assert(CARD_LIST::card_list.is_empty());
-  CMD::command("detach_all", &CARD_LIST::card_list);
-  delete CKT_BASE::_probe_lists;
-  CKT_BASE::_probe_lists = NULL;
-  delete CKT_BASE::_sim;
-  CKT_BASE::_sim = NULL;
   
   return 0;
 }

@@ -1,4 +1,4 @@
-
+include Makeem++
 
 gnucap: nothing
 	#(cd include; ${MAKE} gnucap)
@@ -78,8 +78,6 @@ manifest:
 	(cd main; ${MAKE} manifest)
 	(cd apps; ${MAKE} manifest)
 
-emscripten:g++
-	(./Makeem++)
 
 nothing:
 

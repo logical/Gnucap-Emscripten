@@ -38,8 +38,9 @@ public:
   DISPATCHER_BASE() /*: _map(new std::map<std::string, CKT_BASE*>)*/ {
     if (!_map) {
       _map = new std::map<std::string, CKT_BASE*>;
-    }else{unreachable();
-      puts("build error: link order: constructing dispatcher that already has contents\n");
+    }else{
+      //unreachable();
+      //puts("build error: link order: constructing dispatcher that already has contents\n");
     }    
   }
   ~DISPATCHER_BASE() {
@@ -78,8 +79,9 @@ class INTERFACE DISPATCHER : public DISPATCHER_BASE {
 public:
   void install(const std::string& s, TT* p) {
     assert(s.find(',', 0) == std::string::npos);
-    if (!_map) {unreachable();
-      puts("build error: link order: dispatcher not yet constructed\n");
+    if (!_map) {
+      //unreachable();
+      //puts("build error: link order: dispatcher not yet constructed\n");
       _map = new std::map<std::string, CKT_BASE*>;
     }else{
     }

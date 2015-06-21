@@ -25,7 +25,8 @@ EMSCRIPTEN COMPILE
 -----
 
  ./configure
- make emscripten
+ make
+ make javascript
  
 First the make script will compile the binary using g++. This is necessary because the binary build the models that are needed for emscripten. Next the makefile runs Makeem++. Makeeem++ contains the javascript build configuration.
 
