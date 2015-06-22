@@ -50,7 +50,7 @@ DISPATCHER<CKT_BASE> help_dispatcher;
 DISPATCHER<PROBELIST> probe_dispatcher;
 
 // for the rest, order should not matter, but it is convenient here
-CARD_LIST CARD_LIST::card_list;	// root circuit 
+CARD_LIST CARD_LIST::card_list;	// root circuit
 
 // the rest of this should not be here, is residue of old stuff
 STATUS status;

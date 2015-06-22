@@ -45,4 +45,8 @@ extern INTERFACE DISPATCHER<CKT_BASE> status_dispatcher;
 extern INTERFACE DISPATCHER<CKT_BASE> help_dispatcher;
 extern INTERFACE DISPATCHER<PROBELIST> probe_dispatcher;
 extern INTERFACE std::string head;
+
+// for the rest, order should not matter, but it is convenient here
+CARD_LIST CARD_LIST::card_list;	// root circuit
+
 // vim:ts=8:sw=2:noet:

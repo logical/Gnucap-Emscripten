@@ -24,10 +24,12 @@ can be extracted and built separately.
 EMSCRIPTEN COMPILE
 -----
 
+THE BUILD IS NOT WORKING YET
+
  ./configure
  make
  make javascript
  
 First the make script will compile the binary using g++. This is necessary because the binary build the models that are needed for emscripten. Next the makefile runs Makeem++. Makeeem++ contains the javascript build configuration.
 
-The result is 4MB and it seems like it will run in nodejs but I am currently having trouble getting it to run in Webtronix. This is probably because of a difference in Emscripten versions. If you don't need some of the models in the apps directory just delete the name from the list of filenames. 
+
