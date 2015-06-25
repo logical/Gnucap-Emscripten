@@ -62,8 +62,6 @@ private: // local
   void print_args(OMSTREAM&, const CARD*);
 } lang_spectre;
 
-DISPATCHER<LANGUAGE>::INSTALL
-	d(&language_dispatcher, lang_spectre.name(), &lang_spectre);
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
 static void parse_type(CS& cmd, CARD* x)
@@ -405,7 +403,6 @@ class CMD_MODEL : public CMD {
     }
   }
 } p1;
-DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "model", &p1);
 /*--------------------------------------------------------------------------*/
 class CMD_SUBCKT : public CMD {
   void do_it(CS& cmd, CARD_LIST* Scope)
@@ -419,7 +416,6 @@ class CMD_SUBCKT : public CMD {
     Scope->push_back(new_module);
   }
 } p2;
-DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "subckt", &p2);
 /*--------------------------------------------------------------------------*/
 class CMD_SIMULATOR : public CMD {
   void do_it(CS& cmd, CARD_LIST* Scope)
@@ -427,7 +423,6 @@ class CMD_SIMULATOR : public CMD {
     command("options " + cmd.tail(), Scope);
   }
 } p3;
-DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "simulator", &p3);
 /*--------------------------------------------------------------------------*/
 class CMD_SPECTRE : public CMD {
 public:
@@ -436,7 +431,14 @@ public:
     command("options lang=spectre", Scope);
   }
 } p8;
-DISPATCHER<CMD>::INSTALL d8(&command_dispatcher, "spectre", &p8);
+}
+void lang_spectre_load(void){
+static DISPATCHER<LANGUAGE>::INSTALL
+	d(&language_dispatcher, lang_spectre.name(), &lang_spectre);
+static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "model", &p1);
+static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "subckt", &p2);
+static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "simulator", &p3);
+static DISPATCHER<CMD>::INSTALL d8(&command_dispatcher, "spectre", &p8);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

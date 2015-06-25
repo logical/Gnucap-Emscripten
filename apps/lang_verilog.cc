@@ -86,8 +86,6 @@ private: // local
   void print_args(OMSTREAM&, const COMPONENT*);
 } lang_verilog;
 
-DISPATCHER<LANGUAGE>::INSTALL
-	d(&language_dispatcher, lang_verilog.name(), &lang_verilog);
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
 static void parse_type(CS& cmd, CARD* x)
@@ -476,7 +474,6 @@ class CMD_PARAMSET : public CMD {
     }
   }
 } p1;
-DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "paramset", &p1);
 /*--------------------------------------------------------------------------*/
 class CMD_MODULE : public CMD {
   void do_it(CS& cmd, CARD_LIST* Scope)
@@ -490,7 +487,6 @@ class CMD_MODULE : public CMD {
     Scope->push_back(new_module);
   }
 } p2;
-DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "module|macromodule", &p2);
 /*--------------------------------------------------------------------------*/
 class CMD_VERILOG : public CMD {
 public:
@@ -499,7 +495,13 @@ public:
     command("options lang=verilog", Scope);
   }
 } p8;
-DISPATCHER<CMD>::INSTALL d8(&command_dispatcher, "verilog", &p8);
+}
+void lang_verilog_load(void){
+static DISPATCHER<LANGUAGE>::INSTALL
+	d(&language_dispatcher, lang_verilog.name(), &lang_verilog);
+static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "paramset", &p1);
+static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "module|macromodule", &p2);
+static DISPATCHER<CMD>::INSTALL d8(&command_dispatcher, "verilog", &p8);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

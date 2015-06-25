@@ -1900,12 +1900,14 @@ int MODEL_SPICE::_count = -1;
 int DEV_SPICE::_count = -1;
 
 static DEV_SPICE p0;
+void spice_wrapper(void){
 static DISPATCHER<CARD>::INSTALL
   d0(&device_dispatcher, std::string(SPICE_LETTER) + "|" + DEVICE_TYPE, &p0);
 
 static MODEL_SPICE p1(&p0);
 static DISPATCHER<MODEL_CARD>::INSTALL
   d1(&model_dispatcher, MODEL_TYPE, &p1);
+}
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
 // vim:ts=8:sw=2:noet:

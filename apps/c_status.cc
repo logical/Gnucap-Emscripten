@@ -99,7 +99,9 @@ public:
 		 _sim->_aa.density()*100., _sim->_acx.density()*100.);
   }
 } p;
-DISPATCHER<CMD>::INSTALL d(&command_dispatcher, "status", &p);
+}
+void c_status(void){
+static DISPATCHER<CMD>::INSTALL d(&command_dispatcher, "status", &p);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

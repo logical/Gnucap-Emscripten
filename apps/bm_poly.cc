@@ -189,7 +189,9 @@ bool EVAL_BM_POLY::parse_params_obsolete_callback(CS& cmd)
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
 EVAL_BM_POLY p1(CC_STATIC);
-DISPATCHER<COMMON_COMPONENT>::INSTALL d1(&bm_dispatcher, "poly", &p1);
+}
+void bm_poly(void){
+static DISPATCHER<COMMON_COMPONENT>::INSTALL d1(&bm_dispatcher, "poly", &p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

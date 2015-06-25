@@ -30,10 +30,6 @@
 // here to make sure they get constructed and destructed in proper order
 // first construct, last destruct
 
-const char* lib_version()
-{
-  return PATCHLEVEL;
-}
 
 // dispatchers must be constructed before any static objects they contain
 // and destructed after.
@@ -50,7 +46,20 @@ DISPATCHER<CKT_BASE> help_dispatcher;
 DISPATCHER<PROBELIST> probe_dispatcher;
 
 // for the rest, order should not matter, but it is convenient here
-CARD_LIST CARD_LIST::card_list;	// root circuit
+CARD_LIST CARD_LIST::card_list;	// root circuit 
+
+const char* lib_version()
+{
+  u_opt2();
+  d_subckt();
+  d_logic();
+  bm_cond();
+  bm_value();
+  c_attach();
+  c_file();
+  return PATCHLEVEL;
+}
+
 
 // the rest of this should not be here, is residue of old stuff
 STATUS status;

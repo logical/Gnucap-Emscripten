@@ -294,7 +294,9 @@ void DEV_CPOLY_CAP::set_parameters(const std::string& Label, CARD *Owner,
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
 DEV_FPOLY_CAP p4;
-DISPATCHER<CARD>::INSTALL
+}
+void d_poly_cap(void){
+static DISPATCHER<CARD>::INSTALL
   d4(&device_dispatcher, "fpoly_cap", &p4);
 }
 /*--------------------------------------------------------------------------*/

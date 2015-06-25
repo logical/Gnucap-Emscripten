@@ -85,12 +85,15 @@ public:
   }
 
 } p0;
-DISPATCHER<CMD>::INSTALL d0(&command_dispatcher, "help", &p0);
+
 /*--------------------------------------------------------------------------*/
 class HELP_ERROR_TEST : public CKT_BASE {
 } p1;
-DISPATCHER<CKT_BASE>::INSTALL d1(&help_dispatcher, "help_error_test_with_no_help", &p1);  
 /*--------------------------------------------------------------------------*/
+}
+void c_help(void){
+static DISPATCHER<CMD>::INSTALL d0(&command_dispatcher, "help", &p0);
+static DISPATCHER<CKT_BASE>::INSTALL d1(&help_dispatcher, "help_error_test_with_no_help", &p1);  
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

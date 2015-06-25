@@ -160,7 +160,9 @@ void DEV_ADMITTANCE::do_ac()
 /*--------------------------------------------------------------------------*/
 DEV_ADMITTANCE p1;
 DEV_VCCS       p2;
-DISPATCHER<CARD>::INSTALL
+}
+void d_admit(void){
+static DISPATCHER<CARD>::INSTALL
   d1(&device_dispatcher, "Y|admittance", &p1),
   d2(&device_dispatcher, "G|vccs",       &p2);
 }

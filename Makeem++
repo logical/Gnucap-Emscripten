@@ -1,9 +1,9 @@
 CCP = em++
 CC = emcc
 
-OPTIMIZE = -O3 -s USE_TYPED_ARRAYS=2 -s DISABLE_EXCEPTION_CATCHING=0
+OPTIMIZE = -s DISABLE_EXCEPTION_CATCHING=0 -O3 -s LINKABLE=1
 INCLUDES = -Iinclude/
-CFLAGS =  $(OPTIMIZE) -DEMSCRIPTEN -DUNIX -Dlinux -DSPICE_3f -DPREDICTOR -DAN_pz -DAN_disto -DAN_noise -DHAS_STDLIB -fPIC -W
+CFLAGS = -DSIGSETJMP_IS_BROKEN -DNDEBUG -DUNIX -Dlinux -DSPICE_3f -DPREDICTOR -DAN_pz -DAN_disto -DAN_noise -DHAS_STDLIB $(OPTIMIZE)
 CPPFLAGS = $(CFLAGS) -std=c++11
 
 
@@ -22,20 +22,20 @@ bm_cond bm_value bm \
 c__cmd c_attach c_file \
 findbr plot
 
-#d_admit d_cap d_cccs d_ccvs d_coil d_cs d_poly_g d_poly_cap d_res d_switch d_trln d_vcg d_vcr d_vcvs d_vs d_meter \
-#bm_complex bm_exp bm_fit bm_generator bm_model bm_poly bm_posy bm_pulse bm_pwl bm_sffm bm_sin bm_tanh bmm_table bmm_semi \
-#c_clear c_comand c_delete c_exp  c_genrat c_list c_measure c_modify c_param c_prbcmd c_status c_sweep c_sim c_system \
-#s__init s__out s__solve s_ac s_dc s_fo s_tr s_tr_set s_tr_swp func_core measure_eval measure_max measure_min measure_slewrate measure_cross \
-#measure_integral measure_average measure_rms measure_at signon lang_spectre 	lang_verilog 	lang_spice \
-#O/d_diode O/d_mos_base O/d_mos O/d_mos123 O/d_mos1 O/d_mos2 O/d_mos3 O/d_mos6 O/d_mos7 O/d_mos4 O/d_mos5 O/d_mos8 O/d_bjt \
+#O/d_mos1 O/d_mos2 O/d_mos3 O/d_mos4 O/d_mos5 O/d_mos6 O/d_mos7 O/d_mos8 O/d_mos123 O/d_mos_base O/d_mos O/d_bjt O/d_diode \
+#d_admit d_cap d_cccs d_ccvs d_coil d_cs d_poly_g d_poly_cap d_res d_switch \
+#d_trln d_vcg d_vcr d_vcvs d_vs d_meter bm_complex bm_exp bm_fit bm_generator bm_model bm_poly bm_posy bm_pulse bm_pwl bm_sffm \
+#bm_sin bm_tanh bmm_table bmm_semi c_clear c_comand c_delete c_exp c_genrat c_help c_list c_measure c_modify \
+#c_param c_prbcmd c_status c_sweep c_sim c_system s__init s__out s__solve s_ac s_dc s_fo s_tr s_tr_set s_tr_swp lang_spice lang_spectre lang_verilog \
+#func_core measure_eval measure_max measure_min measure_slewrate measure_cross measure_integral measure_average measure_rms measure_at signon 
 
-APPFILES =\
-O/d_mos1 O/d_mos2 O/d_mos3 O/d_mos4 O/d_mos5 O/d_mos6 O/d_mos7 O/d_mos8 O/d_mos123 O/d_mos_base O/d_mos O/d_bjt O/d_diode \
+APPFILES = \
+d_diode  d_bjt d_mos_base d_mos d_mos1 d_mos2 d_mos3 d_mos4 d_mos5 d_mos6 d_mos7 d_mos8 d_mos123 \
 d_admit d_cap d_cccs d_ccvs d_coil d_cs d_poly_g d_poly_cap d_res d_switch \
 d_trln d_vcg d_vcr d_vcvs d_vs d_meter bm_complex bm_exp bm_fit bm_generator bm_model bm_poly bm_posy bm_pulse bm_pwl bm_sffm \
 bm_sin bm_tanh bmm_table bmm_semi c_clear c_comand c_delete c_exp c_genrat c_help c_list c_measure c_modify \
 c_param c_prbcmd c_status c_sweep c_sim c_system s__init s__out s__solve s_ac s_dc s_fo s_tr s_tr_set s_tr_swp lang_spice lang_spectre lang_verilog \
-func_core measure_eval measure_max measure_min measure_slewrate measure_cross measure_integral measure_average measure_rms measure_at signon 
+func_core measure_eval measure_max measure_min measure_slewrate measure_cross measure_integral measure_average measure_rms measure_at default_plugins
 
 
 
@@ -58,12 +58,17 @@ $(addprefix apps/,$(APPFILES:=.bc)):$(addprefix apps/,$(APPFILES:=.cc))
 
 lib/O/libgnucap.bc:$(addprefix lib/,$(LIBFILES:=.bc)) 
 	-mkdir lib/O 
-	$(CCP) $(addprefix lib/,$(LIBFILES:=.bc)) -o lib/O/libgnucap.bc 
+	$(CCP) $(OPTIMIZE) $(addprefix lib/,$(LIBFILES:=.bc)) -o lib/O/libgnucap.bc 
 
-apps/O/libgnucap-default-plugins.bc:$(addprefix apps/,$(APPFILES:=.bc))
+apps/O/libgnucap-default-plugins.bc:$(addprefix apps/,$(APPFILES:=.bc)) 
 	-mkdir apps/O
 	$(CCP) $(OPTIMIZE) $(addprefix apps/,$(APPFILES:=.bc)) -o apps/O/libgnucap-default-plugins.bc
 
+apps/O/libgnucap-default-plugins.js:$(addprefix apps/,$(APPFILES:=.bc))
+	-mkdir apps/O
+	$(CCP) --memory-init-file 0 -s SIDE_MODULE=1 $(OPTIMIZE) $(addprefix apps/,$(APPFILES:=.bc)) -o apps/O/libgnucap-default-plugins.js
+	
+	
 models-spice3f5/jfet/O/d_jfet.bc:
 	-mkdir models-spice3f5/jfet/O
 		echo $$CCFILE.bc ;\
@@ -77,17 +82,17 @@ models-spice3f5/jfet/O/d_jfet.bc:
 		
 main/O/main.bc: main/main.cc
 	-mkdir main/O
-	$(CCP) $(CPPFLAGS) $(INCLUDES) main/main.cc -o main/O/main.bc 
+	$(CCP) $(CPPFLAGS) $(INCLUDES) main/main.cc -c -o main/O/main.bc 
 	
 clear-cache:
 	-emcc --clear-cache
 
-javascript: clear-cache main/O/main.bc lib/O/libgnucap.bc  apps/O/libgnucap-default-plugins.bc
-	$(CCP) --memory-init-file 0  -s GLOBAL_BASE=0 $(OPTIMIZE) apps/O/libgnucap-default-plugins.bc lib/O/libgnucap.bc main/O/main.bc -o main/O/gnucap.html #--embed-file apps/O/libgnucap-default-plugins.js@/libgnucap-default-plugins.so
+javascript: clear-cache main/O/main.bc lib/O/libgnucap.bc apps/O/libgnucap-default-plugins.bc models-spice3f5/jfet/O/d_jfet.bc
+	$(CCP) $(OPTIMIZE) main/O/main.bc lib/O/libgnucap.bc apps/O/libgnucap-default-plugins.bc models-spice3f5/jfet/O/d_jfet.bc -o main/O/gnucap.bc #--pre-js pre.js 
+	$(CCP) --memory-init-file 0 $(OPTIMIZE) main/O/gnucap.bc -o main/O/gnucap.html #--pre-js pre.js 
 
-jsdlopen: clear-cache main/O/main.bc lib/O/libgnucap.bc  apps/O/libgnucap-default-plugins.bc
-	$(CCP) --memory-init-file 0  $(OPTIMIZE) -s LINKABLE=1 -s SIDE_MODULE=1 -s MAIN_MODULE=0 apps/O/libgnucap-default-plugins.bc -o apps/O/libgnucap-default-plugins.js
-	$(CCP) --memory-init-file 0  $(OPTIMIZE) -s LINKABLE=1 -s MAIN_MODULE=1 -s SIDE_MODULE=0 lib/O/libgnucap.bc main/O/main.bc -o main/O/gnucap.html --embed-file apps/O/libgnucap-default-plugins.js@/libgnucap-default-plugins.so
+jsdlopen: clear-cache main/O/main.bc lib/O/libgnucap.bc  apps/O/libgnucap-default-plugins.js
+	$(CCP) --memory-init-file 0 -s LINKABLE=1 -s MAIN_MODULE=1 $(OPTIMIZE)  lib/O/libgnucap.bc main/O/main.bc -o main/O/gnucap.html --embed-file apps/O/libgnucap-default-plugins.js@/libgnucap-default-plugins.so 
 
 
 uglify:
@@ -97,6 +102,7 @@ cleanjs:
 	-rm lib/*.bc
 	-rm models-spice3f5/jfet/*.bc
 	-rm apps/*.bc
+	-rm apps/O/*.js
 	-rm lib/O/*.bc
 	-rm models-spice3f5/jfet/O/d_jfet.bc
 	-rm apps/O/*.bc
@@ -105,9 +111,6 @@ cleanjs:
 	-rm main/O/*.js
 	-rm main/O/gnucap.html.mem
 
-
-	
-	
 
 #command to minify
 #uglifyjs -v main/O/gnucap.js > main/O/gnucap-ugly.js

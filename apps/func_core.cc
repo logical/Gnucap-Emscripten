@@ -36,7 +36,6 @@ public:
     return to_string(std::abs(x));
   }
 } p_abs;
-DISPATCHER<FUNCTION>::INSTALL d_abs(&function_dispatcher, "abs", &p_abs);
 /*--------------------------------------------------------------------------*/
 class sqrt : public FUNCTION {
 public:
@@ -48,7 +47,6 @@ public:
     return to_string(std::sqrt(x));
   }
 } p_sqrt;
-DISPATCHER<FUNCTION>::INSTALL d_sqrt(&function_dispatcher, "sqrt", &p_sqrt);
 /*--------------------------------------------------------------------------*/
 class log : public FUNCTION {
 public:
@@ -60,7 +58,6 @@ public:
     return to_string(std::log(x));
   }
 } p_log;
-DISPATCHER<FUNCTION>::INSTALL d_log(&function_dispatcher, "log", &p_log);
 /*--------------------------------------------------------------------------*/
 class exp : public FUNCTION {
 public:
@@ -72,7 +69,6 @@ public:
     return to_string(std::exp(x));
   }
 } p_exp;
-DISPATCHER<FUNCTION>::INSTALL d_exp(&function_dispatcher, "exp", &p_exp);
 /*--------------------------------------------------------------------------*/
 class INT : public FUNCTION {
 public:
@@ -84,7 +80,6 @@ public:
     return to_string(std::floor(x));
   }
 } p_int;
-DISPATCHER<FUNCTION>::INSTALL d_int(&function_dispatcher, "int", &p_int);
 /*--------------------------------------------------------------------------*/
 class pow : public FUNCTION {
 public:
@@ -97,7 +92,6 @@ public:
     return to_string(std::pow(x,y));
   }
 } p_pow;
-DISPATCHER<FUNCTION>::INSTALL d_pow(&function_dispatcher, "pow", &p_pow);
 /*--------------------------------------------------------------------------*/
 class MAX : public FUNCTION {
 public:
@@ -110,7 +104,6 @@ public:
     return to_string(std::max(x,y));
   }
 } p_max;
-DISPATCHER<FUNCTION>::INSTALL d_max(&function_dispatcher, "max", &p_max);
 /*--------------------------------------------------------------------------*/
 class MIN : public FUNCTION {
 public:
@@ -123,7 +116,6 @@ public:
     return to_string(std::min(x,y));
   }
 } p_min;
-DISPATCHER<FUNCTION>::INSTALL d_min(&function_dispatcher, "min", &p_min);
 /*--------------------------------------------------------------------------*/
 class IF : public FUNCTION {
 public:
@@ -137,7 +129,6 @@ public:
     return to_string(x ? y : z);
   }
 } p_if;
-DISPATCHER<FUNCTION>::INSTALL d_if(&function_dispatcher, "if", &p_if);
 /*--------------------------------------------------------------------------*/
 class sin : public FUNCTION {
 public:
@@ -149,7 +140,6 @@ public:
     return to_string(std::sin(x));
   }
 } p_sin;
-DISPATCHER<FUNCTION>::INSTALL d_sin(&function_dispatcher, "sin", &p_sin);
 /*--------------------------------------------------------------------------*/
 class sinh : public FUNCTION {
 public:
@@ -161,7 +151,6 @@ public:
     return to_string(std::sinh(x));
   }
 } p_sinh;
-DISPATCHER<FUNCTION>::INSTALL d_sinh(&function_dispatcher, "sinh", &p_sinh);
 /*--------------------------------------------------------------------------*/
 class cos : public FUNCTION {
 public:
@@ -173,7 +162,6 @@ public:
     return to_string(std::cos(x));
   }
 } p_cos;
-DISPATCHER<FUNCTION>::INSTALL d_cos(&function_dispatcher, "cos", &p_cos);
 /*--------------------------------------------------------------------------*/
 class cosh : public FUNCTION {
 public:
@@ -185,7 +173,6 @@ public:
     return to_string(std::cosh(x));
   }
 } p_cosh;
-DISPATCHER<FUNCTION>::INSTALL d_cosh(&function_dispatcher, "cosh", &p_cosh);
 /*--------------------------------------------------------------------------*/
 class tan : public FUNCTION {
 public:
@@ -197,7 +184,6 @@ public:
     return to_string(std::tan(x));
   }
 } p_tan;
-DISPATCHER<FUNCTION>::INSTALL d_tan(&function_dispatcher, "tan", &p_tan);
 /*--------------------------------------------------------------------------*/
 class tanh : public FUNCTION {
 public:
@@ -209,7 +195,6 @@ public:
     return to_string(std::tanh(x));
   }
 } p_tanh;
-DISPATCHER<FUNCTION>::INSTALL d_tanh(&function_dispatcher, "tanh", &p_tanh);
 /*--------------------------------------------------------------------------*/
 class na : public FUNCTION {
 public:
@@ -222,7 +207,6 @@ public:
     //return (arg.has_hard_value()) ? (to_string(double(arg))) : ("NA");
   }
 } p_na;
-DISPATCHER<FUNCTION>::INSTALL d_na(&function_dispatcher, "na", &p_na);
 /*--------------------------------------------------------------------------*/
 // random funcs:
 // Respectively you can give a parameter a statistical dispersion function,
@@ -246,7 +230,25 @@ public:
     return to_string(double(arg));
   }
 } p_stub;
-DISPATCHER<FUNCTION>::INSTALL d_stub(&function_dispatcher, "agauss|gauss|aunif|unif", &p_stub);
+}
+void func_core(void){
+static DISPATCHER<FUNCTION>::INSTALL d_abs(&function_dispatcher, "abs", &p_abs);
+static DISPATCHER<FUNCTION>::INSTALL d_sqrt(&function_dispatcher, "sqrt", &p_sqrt);
+static DISPATCHER<FUNCTION>::INSTALL d_log(&function_dispatcher, "log", &p_log);
+static DISPATCHER<FUNCTION>::INSTALL d_exp(&function_dispatcher, "exp", &p_exp);
+static DISPATCHER<FUNCTION>::INSTALL d_int(&function_dispatcher, "int", &p_int);
+static DISPATCHER<FUNCTION>::INSTALL d_pow(&function_dispatcher, "pow", &p_pow);
+static DISPATCHER<FUNCTION>::INSTALL d_max(&function_dispatcher, "max", &p_max);
+static DISPATCHER<FUNCTION>::INSTALL d_min(&function_dispatcher, "min", &p_min);
+static DISPATCHER<FUNCTION>::INSTALL d_if(&function_dispatcher, "if", &p_if);
+static DISPATCHER<FUNCTION>::INSTALL d_sin(&function_dispatcher, "sin", &p_sin);
+static DISPATCHER<FUNCTION>::INSTALL d_sinh(&function_dispatcher, "sinh", &p_sinh);
+static DISPATCHER<FUNCTION>::INSTALL d_cos(&function_dispatcher, "cos", &p_cos);
+static DISPATCHER<FUNCTION>::INSTALL d_cosh(&function_dispatcher, "cosh", &p_cosh);
+static DISPATCHER<FUNCTION>::INSTALL d_tan(&function_dispatcher, "tan", &p_tan);
+static DISPATCHER<FUNCTION>::INSTALL d_tanh(&function_dispatcher, "tanh", &p_tanh);
+static DISPATCHER<FUNCTION>::INSTALL d_na(&function_dispatcher, "na", &p_na);
+static DISPATCHER<FUNCTION>::INSTALL d_stub(&function_dispatcher, "agauss|gauss|aunif|unif", &p_stub);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

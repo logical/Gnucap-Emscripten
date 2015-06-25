@@ -165,9 +165,11 @@ double const EVAL_BM_SEMI_BASE::_default_value = NOT_INPUT;
 /*--------------------------------------------------------------------------*/
 static MODEL_SEMI_RESISTOR  p1;
 static MODEL_SEMI_CAPACITOR p2;
+void bmm_semi(void){
 static DISPATCHER<MODEL_CARD>::INSTALL
   d1(&model_dispatcher, "r|res", &p1),
   d2(&model_dispatcher, "c|cap", &p2);
+  }
 /*--------------------------------------------------------------------------*/
 EVAL_BM_SEMI_BASE::EVAL_BM_SEMI_BASE(int c)
   :EVAL_BM_ACTION_BASE(c),

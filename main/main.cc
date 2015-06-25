@@ -31,7 +31,11 @@
 #include "ap.h"
 #include "patchlev.h"
 #include "c_comand.h"
-#include "declare.h"	/* plclose */
+#include "declare.h"
+#ifdef EMSCRIPTEN
+	#include "default_plugins.h"
+#endif
+	/* plclose */
 /*--------------------------------------------------------------------------*/
 struct JMP_BUF{
   sigjmp_buf p;
@@ -62,7 +66,11 @@ static void read_startup_files(void)
     }
     
     else{
-      //CMD::command(std::string("load " DEFAULT_PLUGINS), &CARD_LIST::card_list);
+#ifdef EMSCRIPTEN
+			load_default_plugins();
+#else
+      CMD::command(std::string("load " DEFAULT_PLUGINS), &CARD_LIST::card_list);
+#endif      
     }
     
   }

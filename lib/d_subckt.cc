@@ -42,9 +42,11 @@ static COMMON_SUBCKT Default_SUBCKT(CC_STATIC);
 /*--------------------------------------------------------------------------*/
 static DEV_SUBCKT   p1;
 static MODEL_SUBCKT p2;
+void d_subckt(void){
 static DISPATCHER<CARD>::INSTALL
   d1(&device_dispatcher, "X|dev_subckt", &p1),
   d2(&device_dispatcher, "subckt|macro", &p2);
+}
 /*--------------------------------------------------------------------------*/
 bool COMMON_SUBCKT::operator==(const COMMON_COMPONENT& x)const
 {

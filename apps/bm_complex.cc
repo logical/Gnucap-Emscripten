@@ -108,7 +108,10 @@ bool EVAL_BM_COMPLEX::parse_numlist(CS& cmd)
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
 EVAL_BM_COMPLEX p1(CC_STATIC);
-DISPATCHER<COMMON_COMPONENT>::INSTALL d1(&bm_dispatcher, "complex", &p1);
+
+}
+void bm_complex(void){
+static DISPATCHER<COMMON_COMPONENT>::INSTALL d1(&bm_dispatcher, "complex", &p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

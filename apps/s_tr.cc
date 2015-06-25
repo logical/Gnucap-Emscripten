@@ -26,10 +26,10 @@
 #include "u_sim_data.h"
 #include "u_status.h"
 #include "s_tr.h"
-namespace {
+void s_tr(void){
   TRANSIENT p5;
-  DISPATCHER<CMD>::INSTALL      d5(&command_dispatcher, "transient", &p5);
-  DISPATCHER<CKT_BASE>::INSTALL d6(&status_dispatcher,  "transient", &p5);
+  static DISPATCHER<CMD>::INSTALL      d5(&command_dispatcher, "transient", &p5);
+  static DISPATCHER<CKT_BASE>::INSTALL d6(&status_dispatcher,  "transient", &p5);
 }
 /*--------------------------------------------------------------------------*/
 int TRANSIENT::steps_accepted_;

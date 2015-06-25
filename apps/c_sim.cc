@@ -35,7 +35,6 @@ public:
     _sim->_freezetime = true;
   }
 } p6;
-DISPATCHER<CMD>::INSTALL d6(&command_dispatcher, "mark|freeze", &p6);
 /*--------------------------------------------------------------------------*/
 class CMD_UNMARK : public CMD {
 public:
@@ -44,7 +43,10 @@ public:
     _sim->_freezetime = false;
   }
 } p7;
-DISPATCHER<CMD>::INSTALL d7(&command_dispatcher, "unmark|unfreeze", &p7);
+}
+void c_sim(void){
+static DISPATCHER<CMD>::INSTALL d6(&command_dispatcher, "mark|freeze", &p6);
+static DISPATCHER<CMD>::INSTALL d7(&command_dispatcher, "unmark|unfreeze", &p7);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

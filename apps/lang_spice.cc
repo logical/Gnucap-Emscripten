@@ -85,8 +85,6 @@ public:
   UNITS units()const {return uSPICE;}
   void parse_top_item(CS&, CARD_LIST*);
 } lang_spice;
-DISPATCHER<LANGUAGE>::INSTALL
-	ds(&language_dispatcher, lang_spice.name(), &lang_spice);
 /*--------------------------------------------------------------------------*/
 class LANG_ACS : public LANG_SPICE_BASE {
 public:
@@ -96,12 +94,8 @@ public:
   bool case_insensitive()const {return true;}
   UNITS units()const {return uSPICE;}
 } lang_acs;
-DISPATCHER<LANGUAGE>::INSTALL
-	da(&language_dispatcher, lang_acs.name(), &lang_acs);
 /*--------------------------------------------------------------------------*/
 DEV_COMMENT p0;
-DISPATCHER<CARD>::INSTALL
-	d0(&device_dispatcher, ";|#|*|'|\"|dev_comment", &p0);
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
 static void skip_pre_stuff(CS& cmd)
@@ -856,7 +850,6 @@ class CMD_MODEL : public CMD {
     }
   }
 } p1;
-DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, ".model", &p1);
 /*--------------------------------------------------------------------------*/
 class CMD_SUBCKT : public CMD {
   void do_it(CS& cmd, CARD_LIST* Scope)
@@ -870,7 +863,6 @@ class CMD_SUBCKT : public CMD {
     Scope->push_back(new_module);
   }
 } p2;
-DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, ".subckt|.macro", &p2);
 /*--------------------------------------------------------------------------*/
 enum Skip_Header {NO_HEADER, SKIP_HEADER};
 /*--------------------------------------------------------------------------*/
@@ -957,7 +949,6 @@ public:
     }
   }
 } p33;
-DISPATCHER<CMD>::INSTALL d33(&command_dispatcher, ".lib|lib", &p33);
 /*--------------------------------------------------------------------------*/
 /* cmd_include: include command
  * as get or run, but do not clear first, inherit the run-mode.
@@ -969,7 +960,6 @@ public:
     getmerge(cmd, NO_HEADER, Scope);
   }
 } p3;
-DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, ".include", &p3);
 /*--------------------------------------------------------------------------*/
 /* cmd_merge: merge command
  * as get, but do not clear first
@@ -982,7 +972,6 @@ public:
     getmerge(cmd, NO_HEADER, Scope);
   }
 } p4;
-DISPATCHER<CMD>::INSTALL d4(&command_dispatcher, ".merge|merge", &p4);
 /*--------------------------------------------------------------------------*/
 /* cmd_run: "<" and "<<" commands
  * run in batch mode.  Spice format.
@@ -1002,7 +991,6 @@ public:
     getmerge(cmd, SKIP_HEADER, Scope);
   }
 } p5;
-DISPATCHER<CMD>::INSTALL d5(&command_dispatcher, "<", &p5);
 /*--------------------------------------------------------------------------*/
 /* cmd_get: get command
  * get circuit from a file, after clearing the old one
@@ -1017,7 +1005,6 @@ public:
     getmerge(cmd, SKIP_HEADER, Scope);
   }
 } p6;
-DISPATCHER<CMD>::INSTALL d6(&command_dispatcher, ".get|get", &p6);
 /*--------------------------------------------------------------------------*/
 /* cmd_build: build command
  * get circuit description direct from keyboard (or stdin if redirected)
@@ -1037,7 +1024,6 @@ public:
     ::status.get.stop();
   }
 } p7;
-DISPATCHER<CMD>::INSTALL d7(&command_dispatcher, ".build|build", &p7);
 /*--------------------------------------------------------------------------*/
 class CMD_SPICE : public CMD {
 public:
@@ -1046,7 +1032,6 @@ public:
     command("options lang=spice", Scope);
   }
 } p8;
-DISPATCHER<CMD>::INSTALL d8(&command_dispatcher, "spice", &p8);
 /*--------------------------------------------------------------------------*/
 class CMD_ACS : public CMD {
 public:
@@ -1055,7 +1040,6 @@ public:
     command("options lang=acs", Scope);
   }
 } p9;
-DISPATCHER<CMD>::INSTALL d9(&command_dispatcher, "acs", &p9);
 /*--------------------------------------------------------------------------*/
 class CMD_ENDC : public CMD {
 public:
@@ -1067,7 +1051,6 @@ public:
     }
   }
 } p88;
-DISPATCHER<CMD>::INSTALL d88(&command_dispatcher, ".endc", &p88);
 /*--------------------------------------------------------------------------*/
 class CMD_CONTROL : public CMD {
 public:
@@ -1079,7 +1062,26 @@ public:
     }
   }
 } p99;
-DISPATCHER<CMD>::INSTALL d99(&command_dispatcher, ".control", &p99);
+}
+void lang_spice_load(void){
+static DISPATCHER<LANGUAGE>::INSTALL
+	ds(&language_dispatcher, lang_spice.name(), &lang_spice);
+static DISPATCHER<LANGUAGE>::INSTALL
+	da(&language_dispatcher, lang_acs.name(), &lang_acs);
+static DISPATCHER<CARD>::INSTALL
+	d0(&device_dispatcher, ";|#|*|'|\"|dev_comment", &p0);
+static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, ".model", &p1);
+static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, ".subckt|.macro", &p2);
+static DISPATCHER<CMD>::INSTALL d33(&command_dispatcher, ".lib|lib", &p33);
+static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, ".include", &p3);
+static DISPATCHER<CMD>::INSTALL d4(&command_dispatcher, ".merge|merge", &p4);
+static DISPATCHER<CMD>::INSTALL d5(&command_dispatcher, "<", &p5);
+static DISPATCHER<CMD>::INSTALL d6(&command_dispatcher, ".get|get", &p6);
+static DISPATCHER<CMD>::INSTALL d7(&command_dispatcher, ".build|build", &p7);
+static DISPATCHER<CMD>::INSTALL d8(&command_dispatcher, "spice", &p8);
+static DISPATCHER<CMD>::INSTALL d9(&command_dispatcher, "acs", &p9);
+static DISPATCHER<CMD>::INSTALL d88(&command_dispatcher, ".endc", &p88);
+static DISPATCHER<CMD>::INSTALL d99(&command_dispatcher, ".control", &p99);
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
 }

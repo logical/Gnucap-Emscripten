@@ -327,7 +327,10 @@ namespace {
       o.command(cmd);
     }
   } p5;
-  DISPATCHER<CMD>::INSTALL d5(&command_dispatcher, "options|set|width", &p5);
+}
+void u_opt2(void)
+{
+  static DISPATCHER<CMD>::INSTALL d5(&command_dispatcher, "options|set|width", &p5);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

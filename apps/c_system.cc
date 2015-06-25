@@ -52,7 +52,6 @@ public:
     }
   }
 } p1;
-DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "edit", &p1);
 /*--------------------------------------------------------------------------*/
 class CMD_SYSTEM : public CMD {
 public:
@@ -65,7 +64,6 @@ public:
     }
   }
 } p2;
-DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "system|!", &p2);
 /*--------------------------------------------------------------------------*/
 class CMD_CHDIR : public CMD {
 public:
@@ -78,7 +76,11 @@ public:
     IO::mstdout << OS::getcwd() << '\n';
   }
 } p3;
-DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "chdir|cd", &p3);
+}
+void c_system(void){
+static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "edit", &p1);
+static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "system|!", &p2);
+static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "chdir|cd", &p3);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

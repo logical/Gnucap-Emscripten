@@ -570,7 +570,9 @@ double DEV_MUTUAL_L::tr_probe_num(const std::string& x)const
 /*--------------------------------------------------------------------------*/
 DEV_MUTUAL_L   p1;
 DEV_INDUCTANCE p2;
-DISPATCHER<CARD>::INSTALL
+}
+void d_coil(void){
+static DISPATCHER<CARD>::INSTALL
   d1(&device_dispatcher, "K|mutual_inductor", &p1),
   d2(&device_dispatcher, "L|inductor",        &p2);
 }

@@ -26,8 +26,11 @@
 #include "globals.h"
 #include "bm.h"
 /*--------------------------------------------------------------------------*/
+
 static EVAL_BM_VALUE p1(CC_STATIC);
+void bm_value(void){
 static DISPATCHER<COMMON_COMPONENT>::INSTALL d1(&bm_dispatcher, "value|eval_bm_value", &p1);
+}
 /*--------------------------------------------------------------------------*/
 bool EVAL_BM_VALUE::operator==(const COMMON_COMPONENT& x)const
 {

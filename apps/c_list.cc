@@ -110,7 +110,6 @@ public:
     list_save(cmd, IO::mstdout, Scope);
   }
 } p1;
-DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "list", &p1);
 /*--------------------------------------------------------------------------*/
 class CMD_SAVE : public CMD {
 public:
@@ -121,8 +120,11 @@ public:
     list_save(cmd, *outset(cmd,&out), Scope);
   }
 } p2;
-DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "save", &p2);
 /*--------------------------------------------------------------------------*/
+}
+void c_list(void){
+static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "list", &p1);
+static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "save", &p2);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

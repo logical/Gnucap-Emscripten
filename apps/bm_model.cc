@@ -139,7 +139,9 @@ void EVAL_BM_MODEL::expand(const COMPONENT* d)
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
 EVAL_BM_MODEL p1(CC_STATIC);
-DISPATCHER<COMMON_COMPONENT>::INSTALL d1(&bm_dispatcher, "eval_bm_model", &p1);
+}
+void bm_model(void){
+static DISPATCHER<COMMON_COMPONENT>::INSTALL d1(&bm_dispatcher, "eval_bm_model", &p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

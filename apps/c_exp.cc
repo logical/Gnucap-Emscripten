@@ -37,7 +37,9 @@ public:
     std::cout << e << '=' << r << '\n';
   }
 } p0;
-DISPATCHER<CMD>::INSTALL d0(&command_dispatcher, "exp|eval", &p0);
+}
+void c_exp(void){
+static DISPATCHER<CMD>::INSTALL d0(&command_dispatcher, "exp|eval", &p0);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

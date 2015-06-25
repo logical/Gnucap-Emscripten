@@ -213,7 +213,9 @@ bool EVAL_BM_PWL::parse_params_obsolete_callback(CS& cmd)
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
 EVAL_BM_PWL p1(CC_STATIC);
-DISPATCHER<COMMON_COMPONENT>::INSTALL d1(&bm_dispatcher, "pwl", &p1);
+}
+void bm_pwl(void){
+static DISPATCHER<COMMON_COMPONENT>::INSTALL d1(&bm_dispatcher, "pwl", &p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

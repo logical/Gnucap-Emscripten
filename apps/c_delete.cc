@@ -118,7 +118,9 @@ private:
     }
   }
 } p1;
-DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "delete|rm", &p1);
+}
+void c_delete(void){
+static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "delete|rm", &p1);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

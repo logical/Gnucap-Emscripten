@@ -36,12 +36,14 @@ int MODEL_LOGIC::_count = -1; // there is one in e_node.cc, and the dispatcher
 static LOGIC_NONE Default_LOGIC(CC_STATIC);
 /*--------------------------------------------------------------------------*/
 static DEV_LOGIC p1;
-static DISPATCHER<CARD>::INSTALL
-d1(&device_dispatcher, "U|logic", &p1);
 /*--------------------------------------------------------------------------*/
 static MODEL_LOGIC p2(&p1);
-static DISPATCHER<MODEL_CARD>::INSTALL
-d2(&model_dispatcher, "logic", &p2);
+void d_logic(void){
+  static DISPATCHER<CARD>::INSTALL
+  d1(&device_dispatcher, "U|logic", &p1);
+  static DISPATCHER<MODEL_CARD>::INSTALL
+  d2(&model_dispatcher, "logic", &p2);
+}
 /*--------------------------------------------------------------------------*/
 DEV_LOGIC::DEV_LOGIC()
   :ELEMENT(),

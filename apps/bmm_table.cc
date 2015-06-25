@@ -83,8 +83,10 @@ double const MODEL_TABLE::_default_below = NOT_INPUT;
 double const MODEL_TABLE::_default_above = NOT_INPUT;
 /*--------------------------------------------------------------------------*/
 static MODEL_TABLE p1;
+void bmm_table(void){
 static DISPATCHER<MODEL_CARD>::INSTALL
 d1(&model_dispatcher, "table", &p1);
+}
 /*--------------------------------------------------------------------------*/
 EVAL_BM_TABLE::EVAL_BM_TABLE(int c)
   :EVAL_BM_ACTION_BASE(c)

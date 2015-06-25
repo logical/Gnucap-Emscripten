@@ -119,7 +119,6 @@ public:
     do_probe(cmd,_probe_lists->store);
   }
 } p0;
-DISPATCHER<CMD>::INSTALL d0(&command_dispatcher, "store", &p0);
 /*--------------------------------------------------------------------------*/
 class CMD_ALARM : public CMD {
 public:
@@ -130,7 +129,6 @@ public:
     do_probe(cmd,_probe_lists->alarm);
   }
 } p1;
-DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "alarm", &p1);
 /*--------------------------------------------------------------------------*/
 class CMD_PLOT : public CMD {
 public:
@@ -142,7 +140,6 @@ public:
     do_probe(cmd,_probe_lists->plot);
   }
 } p2;
-DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "iplot|plot", &p2);
 /*--------------------------------------------------------------------------*/
 class CMD_PRINT : public CMD {
 public:
@@ -154,7 +151,12 @@ public:
     do_probe(cmd,_probe_lists->print);
   }
 } p3;
-DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "iprint|print|probe", &p3);
+}
+void c_prbcmd(void){
+static DISPATCHER<CMD>::INSTALL d0(&command_dispatcher, "store", &p0);
+static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "alarm", &p1);
+static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "iplot|plot", &p2);
+static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "iprint|print|probe", &p3);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

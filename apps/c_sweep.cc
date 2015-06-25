@@ -143,7 +143,9 @@ public:
     command("unfault", Scope);
   }
 } p;
-DISPATCHER<CMD>::INSTALL d(&command_dispatcher, "sweep", &p);
+}
+void c_sweep(void){
+static DISPATCHER<CMD>::INSTALL d(&command_dispatcher, "sweep", &p);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

@@ -81,7 +81,9 @@ public:
     }
   }
 } p4;
-DISPATCHER<FUNCTION>::INSTALL d4(&measure_dispatcher, "rms", &p4);
+}
+void measure_rms(void){
+static DISPATCHER<FUNCTION>::INSTALL d4(&measure_dispatcher, "rms", &p4);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

@@ -134,7 +134,6 @@ public:
     modify_fault(cmd, MODIFY, Scope);
   }
 } p1;
-DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "modify|alter", &p1);
 /*--------------------------------------------------------------------------*/
 class CMD_FAULT : public CMD {
 public:
@@ -143,7 +142,6 @@ public:
     modify_fault(cmd, FAULT, Scope);
   }
 } p2;
-DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "fault", &p2);
 /*--------------------------------------------------------------------------*/
 class CMD_RESTORE : public CMD {
 public:
@@ -153,7 +151,6 @@ public:
     command("unmark", Scope);
   }
 } p3;
-DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "restore", &p3);
 /*--------------------------------------------------------------------------*/
 class CMD_UNFAULT : public CMD {
 public:
@@ -166,7 +163,12 @@ public:
     _sim->uninit();
   }
 } p4;
-DISPATCHER<CMD>::INSTALL d4(&command_dispatcher, "unfault", &p4);
+}
+void c_modify(void){
+static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "modify|alter", &p1);
+static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "fault", &p2);
+static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "restore", &p3);
+static DISPATCHER<CMD>::INSTALL d4(&command_dispatcher, "unfault", &p4);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

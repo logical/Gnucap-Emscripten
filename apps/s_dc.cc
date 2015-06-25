@@ -460,6 +460,8 @@ bool DCOP::next(int Nest)
 /*--------------------------------------------------------------------------*/
 static DC p2;
 static OP p4;
+}
+void s_dc(void){
 static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "dc", &p2);
 static DISPATCHER<CMD>::INSTALL d4(&command_dispatcher, "op", &p4);
 }

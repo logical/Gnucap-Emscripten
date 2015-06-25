@@ -46,7 +46,9 @@ public:
     command("title '", Scope);
   }
 } p0;
-DISPATCHER<CMD>::INSTALL d0(&command_dispatcher, "clear", &p0);
+}
+void c_clear(void){
+static DISPATCHER<CMD>::INSTALL d0(&command_dispatcher, "clear", &p0);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

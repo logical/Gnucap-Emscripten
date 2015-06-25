@@ -36,7 +36,9 @@ public:
     return to_string(double(arg));
   }
 } p1;
-DISPATCHER<FUNCTION>::INSTALL d1(&measure_dispatcher, "eval", &p1);
+}
+void measure_eval(void){
+static DISPATCHER<FUNCTION>::INSTALL d1(&measure_dispatcher, "eval", &p1);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

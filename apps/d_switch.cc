@@ -634,13 +634,15 @@ bool DEV_CSWITCH::node_is_connected(int i)const
 /*--------------------------------------------------------------------------*/
 DEV_VSWITCH p2;
 DEV_CSWITCH p3;
-DISPATCHER<CARD>::INSTALL
-  d2(&device_dispatcher, "S|vswitch", &p2),
-  d3(&device_dispatcher, "W|cswitch|iswitch", &p3);
 
 MODEL_SWITCH p1(&p2);
 MODEL_SWITCH p4(&p3);
-DISPATCHER<MODEL_CARD>::INSTALL
+}
+void d_switch(void){
+static DISPATCHER<CARD>::INSTALL
+  d2(&device_dispatcher, "S|vswitch", &p2),
+  d3(&device_dispatcher, "W|cswitch|iswitch", &p3);
+static DISPATCHER<MODEL_CARD>::INSTALL
   d1(&model_dispatcher, "sw", &p1),
   d4(&model_dispatcher, "csw", &p4);
 }

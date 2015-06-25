@@ -109,7 +109,9 @@ public:
     }
   }
 } p4;
-DISPATCHER<FUNCTION>::INSTALL d4(&measure_dispatcher, "cross", &p4);
+}
+void measure_cross(void){
+static DISPATCHER<FUNCTION>::INSTALL d4(&measure_dispatcher, "cross", &p4);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

@@ -67,7 +67,9 @@ public:
     }
   }
 } p1;
-DISPATCHER<FUNCTION>::INSTALL d1(&measure_dispatcher, "at", &p1);
+}
+void measure_at(void){
+static DISPATCHER<FUNCTION>::INSTALL d1(&measure_dispatcher, "at", &p1);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

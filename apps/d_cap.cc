@@ -209,7 +209,9 @@ bool DEV_VCCAP::do_tr()
 DEV_CAPACITANCE p1;
 DEV_TRANSCAP    p2;
 DEV_VCCAP       p3;
-DISPATCHER<CARD>::INSTALL
+}
+void d_cap(void){
+static DISPATCHER<CARD>::INSTALL
   d1(&device_dispatcher, "C|capacitor",	    &p1),
   d2(&device_dispatcher, "tcap|tcapacitor", &p2),
   d3(&device_dispatcher, "vccap",	    &p3);

@@ -78,7 +78,7 @@ public:
 */    
   }
 } p1;
-DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "attach|load", &p1);
+
 /*--------------------------------------------------------------------------*/
 class CMD_DETACH : public CMD {
 public:
@@ -102,7 +102,6 @@ public:
     }
   }
 } p2;
-DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "detach|unload", &p2);
 /*--------------------------------------------------------------------------*/
 class CMD_DETACH_ALL : public CMD {
 public:
@@ -124,7 +123,11 @@ public:
     untested();}
   }
 } p3;
-DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "detach_all", &p3);
+}
+void c_attach(void){
+static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "attach|load", &p1);
+static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "detach|unload", &p2);
+static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "detach_all", &p3);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/
