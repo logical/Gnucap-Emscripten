@@ -83,7 +83,7 @@ public:
 } p4;
 }
 void measure_rms(void){
-static DISPATCHER<FUNCTION>::INSTALL d4(&measure_dispatcher, "rms", &p4);
+static DISPATCHER<FUNCTION>::INSTALL d4(&measure_dispatcher, "rms", &::p4);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

@@ -107,7 +107,7 @@ bool EVAL_BM_GENERATOR::parse_numlist(CS& cmd)
 EVAL_BM_GENERATOR p1(CC_STATIC);
 }
 void bm_generator(void){
-static DISPATCHER<COMMON_COMPONENT>::INSTALL d1(&bm_dispatcher, "gen|generator", &p1);
+static DISPATCHER<COMMON_COMPONENT>::INSTALL d1(&bm_dispatcher, "gen|generator", &::p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

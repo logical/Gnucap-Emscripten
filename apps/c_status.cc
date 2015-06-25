@@ -101,7 +101,7 @@ public:
 } p;
 }
 void c_status(void){
-static DISPATCHER<CMD>::INSTALL d(&command_dispatcher, "status", &p);
+static DISPATCHER<CMD>::INSTALL d(&command_dispatcher, "status", &::p);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

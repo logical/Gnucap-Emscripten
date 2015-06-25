@@ -498,10 +498,10 @@ public:
 }
 void lang_verilog_load(void){
 static DISPATCHER<LANGUAGE>::INSTALL
-	d(&language_dispatcher, lang_verilog.name(), &lang_verilog);
-static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "paramset", &p1);
-static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "module|macromodule", &p2);
-static DISPATCHER<CMD>::INSTALL d8(&command_dispatcher, "verilog", &p8);
+	d(&language_dispatcher, lang_verilog.name(), &::lang_verilog);
+static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "paramset", &::p1);
+static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "module|macromodule", &::p2);
+static DISPATCHER<CMD>::INSTALL d8(&command_dispatcher, "verilog", &::p8);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

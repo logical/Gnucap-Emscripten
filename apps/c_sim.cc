@@ -45,8 +45,8 @@ public:
 } p7;
 }
 void c_sim(void){
-static DISPATCHER<CMD>::INSTALL d6(&command_dispatcher, "mark|freeze", &p6);
-static DISPATCHER<CMD>::INSTALL d7(&command_dispatcher, "unmark|unfreeze", &p7);
+static DISPATCHER<CMD>::INSTALL d6(&command_dispatcher, "mark|freeze", &::p6);
+static DISPATCHER<CMD>::INSTALL d7(&command_dispatcher, "unmark|unfreeze", &::p7);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

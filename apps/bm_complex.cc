@@ -111,7 +111,7 @@ EVAL_BM_COMPLEX p1(CC_STATIC);
 
 }
 void bm_complex(void){
-static DISPATCHER<COMMON_COMPONENT>::INSTALL d1(&bm_dispatcher, "complex", &p1);
+static DISPATCHER<COMMON_COMPONENT>::INSTALL d1(&bm_dispatcher, "complex", &::p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

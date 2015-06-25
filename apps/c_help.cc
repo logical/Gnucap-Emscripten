@@ -92,8 +92,8 @@ class HELP_ERROR_TEST : public CKT_BASE {
 /*--------------------------------------------------------------------------*/
 }
 void c_help(void){
-static DISPATCHER<CMD>::INSTALL d0(&command_dispatcher, "help", &p0);
-static DISPATCHER<CKT_BASE>::INSTALL d1(&help_dispatcher, "help_error_test_with_no_help", &p1);  
+static DISPATCHER<CMD>::INSTALL d0(&command_dispatcher, "help", &::p0);
+static DISPATCHER<CKT_BASE>::INSTALL d1(&help_dispatcher, "help_error_test_with_no_help", &::p1);  
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

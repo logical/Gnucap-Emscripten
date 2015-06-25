@@ -242,7 +242,7 @@ bool EVAL_BM_POSY::parse_params_obsolete_callback(CS& cmd)
 EVAL_BM_POSY p1(CC_STATIC);
 }
 void bm_posy(void){
-static DISPATCHER<COMMON_COMPONENT>::INSTALL d1(&bm_dispatcher, "posy", &p1);
+static DISPATCHER<COMMON_COMPONENT>::INSTALL d1(&bm_dispatcher, "posy", &::p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

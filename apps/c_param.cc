@@ -42,7 +42,7 @@ public:
 } p;
 }
 void c_param(void){
-static DISPATCHER<CMD>::INSTALL d(&command_dispatcher, "param|parameters|parameter", &p);
+static DISPATCHER<CMD>::INSTALL d(&command_dispatcher, "param|parameters|parameter", &::p);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

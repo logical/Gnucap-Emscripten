@@ -1,9 +1,9 @@
 CCP = em++
 CC = emcc
 
-OPTIMIZE = -s DISABLE_EXCEPTION_CATCHING=0 -O3 
+OPTIMIZE = -s DISABLE_EXCEPTION_CATCHING=0 -O3
 INCLUDES = -Iinclude/
-CFLAGS = -DSIGSETJMP_IS_BROKEN -DNDEBUG -DUNIX -Dlinux -DSPICE_3f -DPREDICTOR -DAN_pz -DAN_disto -DAN_noise -DHAS_STDLIB $(OPTIMIZE)
+CFLAGS = -DEMSCRIPTEN -DNDEBUG -DUNIX -Dlinux -DSPICE_3f -DPREDICTOR -DAN_pz -DAN_disto -DAN_noise -DHAS_STDLIB $(OPTIMIZE)
 CPPFLAGS = $(CFLAGS) -std=c++11
 
 
@@ -83,7 +83,7 @@ javascript: clear-cache main/O/main.bc lib/O/libgnucap.bc apps/O/libgnucap-defau
 uglify:
 	uglifyjs -v main/O/gnucap.js > main/O/gnucap-ugly.js
 
-cleanjs:
+clean:
 	-rm lib/*.bc
 	-rm models-spice3f5/jfet/*.bc
 	-rm apps/*.bc

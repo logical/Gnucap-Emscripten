@@ -125,9 +125,9 @@ public:
 } p3;
 }
 void c_attach(void){
-static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "attach|load", &p1);
-static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "detach|unload", &p2);
-static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "detach_all", &p3);
+static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "attach|load", &::p1);
+static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "detach|unload", &::p2);
+static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "detach_all", &::p3);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

@@ -82,7 +82,7 @@ public:
 } p4;
 }
 void measure_average(void){
-static DISPATCHER<FUNCTION>::INSTALL d4(&measure_dispatcher, "average|mean", &p4);
+static DISPATCHER<FUNCTION>::INSTALL d4(&measure_dispatcher, "average|mean", &::p4);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

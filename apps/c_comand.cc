@@ -114,11 +114,11 @@ public:
 /*--------------------------------------------------------------------------*/
 }
 void c_command(void){
-static DISPATCHER<CMD>::INSTALL d0(&command_dispatcher, "end", &p0);
-static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "pause", &p1);
-static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "quit|exit", &p2);
-static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "temperature|temp", &p3);
-static DISPATCHER<CMD>::INSTALL d4(&command_dispatcher, "title", &p4);
+static DISPATCHER<CMD>::INSTALL d0(&command_dispatcher, "end", &::p0);
+static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "pause", &::p1);
+static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "quit|exit", &::p2);
+static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "temperature|temp", &::p3);
+static DISPATCHER<CMD>::INSTALL d4(&command_dispatcher, "title", &::p4);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

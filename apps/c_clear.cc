@@ -48,7 +48,7 @@ public:
 } p0;
 }
 void c_clear(void){
-static DISPATCHER<CMD>::INSTALL d0(&command_dispatcher, "clear", &p0);
+static DISPATCHER<CMD>::INSTALL d0(&command_dispatcher, "clear", &::p0);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

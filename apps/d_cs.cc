@@ -126,7 +126,7 @@ void DEV_CS::do_ac()
 DEV_CS p1;
 }
 void d_cs(void){
-static DISPATCHER<CARD>::INSTALL d1(&device_dispatcher, "I|csource|isource", &p1);
+static DISPATCHER<CARD>::INSTALL d1(&device_dispatcher, "I|csource|isource", &::p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

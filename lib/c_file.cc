@@ -141,9 +141,9 @@ public:
 }
 void c_file(void){
 
-static DISPATCHER<CMD>::INSTALL d0(&command_dispatcher, "include", &p0);
-static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "log", &p1);
-static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, ">", &p2);
+static DISPATCHER<CMD>::INSTALL d0(&command_dispatcher, "include", &::p0);
+static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "log", &::p1);
+static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, ">", &::p2);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

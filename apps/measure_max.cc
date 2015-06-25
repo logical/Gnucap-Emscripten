@@ -89,7 +89,7 @@ public:
 } p1;
 }
 void measure_max(void){
-static DISPATCHER<FUNCTION>::INSTALL d1(&measure_dispatcher, "max", &p1);
+static DISPATCHER<FUNCTION>::INSTALL d1(&measure_dispatcher, "max", &::p1);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

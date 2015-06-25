@@ -115,7 +115,7 @@ void DEV_VCG::do_ac()
 DEV_VCG p3;
 }
 void d_vcg(void){
-  static DISPATCHER<CARD>::INSTALL d3(&device_dispatcher, "vcg", &p3);
+  static DISPATCHER<CARD>::INSTALL d3(&device_dispatcher, "vcg", &::p3);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

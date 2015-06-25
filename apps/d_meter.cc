@@ -89,7 +89,7 @@ XPROBE DEV::ac_probe_ext(const std::string& x)const
 DEV p1;
 }
 void d_meter(void){
-static DISPATCHER<CARD>::INSTALL d1(&device_dispatcher, "meter", &p1);
+static DISPATCHER<CARD>::INSTALL d1(&device_dispatcher, "meter", &::p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

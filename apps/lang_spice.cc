@@ -1065,23 +1065,23 @@ public:
 }
 void lang_spice_load(void){
 static DISPATCHER<LANGUAGE>::INSTALL
-	ds(&language_dispatcher, lang_spice.name(), &lang_spice);
+	ds(&language_dispatcher, lang_spice.name(), &::lang_spice);
 static DISPATCHER<LANGUAGE>::INSTALL
-	da(&language_dispatcher, lang_acs.name(), &lang_acs);
+	da(&language_dispatcher, lang_acs.name(), &::lang_acs);
 static DISPATCHER<CARD>::INSTALL
-	d0(&device_dispatcher, ";|#|*|'|\"|dev_comment", &p0);
-static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, ".model", &p1);
-static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, ".subckt|.macro", &p2);
-static DISPATCHER<CMD>::INSTALL d33(&command_dispatcher, ".lib|lib", &p33);
-static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, ".include", &p3);
-static DISPATCHER<CMD>::INSTALL d4(&command_dispatcher, ".merge|merge", &p4);
-static DISPATCHER<CMD>::INSTALL d5(&command_dispatcher, "<", &p5);
-static DISPATCHER<CMD>::INSTALL d6(&command_dispatcher, ".get|get", &p6);
-static DISPATCHER<CMD>::INSTALL d7(&command_dispatcher, ".build|build", &p7);
-static DISPATCHER<CMD>::INSTALL d8(&command_dispatcher, "spice", &p8);
-static DISPATCHER<CMD>::INSTALL d9(&command_dispatcher, "acs", &p9);
-static DISPATCHER<CMD>::INSTALL d88(&command_dispatcher, ".endc", &p88);
-static DISPATCHER<CMD>::INSTALL d99(&command_dispatcher, ".control", &p99);
+	d0(&device_dispatcher, ";|#|*|'|\"|dev_comment", &::p0);
+static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, ".model", &::p1);
+static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, ".subckt|.macro", &::p2);
+static DISPATCHER<CMD>::INSTALL d33(&command_dispatcher, ".lib|lib", &::p33);
+static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, ".include", &::p3);
+static DISPATCHER<CMD>::INSTALL d4(&command_dispatcher, ".merge|merge", &::p4);
+static DISPATCHER<CMD>::INSTALL d5(&command_dispatcher, "<", &::p5);
+static DISPATCHER<CMD>::INSTALL d6(&command_dispatcher, ".get|get", &::p6);
+static DISPATCHER<CMD>::INSTALL d7(&command_dispatcher, ".build|build", &::p7);
+static DISPATCHER<CMD>::INSTALL d8(&command_dispatcher, "spice", &::p8);
+static DISPATCHER<CMD>::INSTALL d9(&command_dispatcher, "acs", &::p9);
+static DISPATCHER<CMD>::INSTALL d88(&command_dispatcher, ".endc", &::p88);
+static DISPATCHER<CMD>::INSTALL d99(&command_dispatcher, ".control", &::p99);
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
 }

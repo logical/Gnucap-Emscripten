@@ -640,11 +640,11 @@ MODEL_SWITCH p4(&p3);
 }
 void d_switch(void){
 static DISPATCHER<CARD>::INSTALL
-  d2(&device_dispatcher, "S|vswitch", &p2),
-  d3(&device_dispatcher, "W|cswitch|iswitch", &p3);
+  d2(&device_dispatcher, "S|vswitch", &::p2),
+  d3(&device_dispatcher, "W|cswitch|iswitch", &::p3);
 static DISPATCHER<MODEL_CARD>::INSTALL
-  d1(&model_dispatcher, "sw", &p1),
-  d4(&model_dispatcher, "csw", &p4);
+  d1(&model_dispatcher, "sw", &::p1),
+  d4(&model_dispatcher, "csw", &::p4);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

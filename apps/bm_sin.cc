@@ -226,7 +226,7 @@ bool EVAL_BM_SIN::parse_params_obsolete_callback(CS& cmd)
 EVAL_BM_SIN p1(CC_STATIC);
 }
 void bm_sin(void){
-static DISPATCHER<COMMON_COMPONENT>::INSTALL d1(&bm_dispatcher, "sin|sine", &p1);
+static DISPATCHER<COMMON_COMPONENT>::INSTALL d1(&bm_dispatcher, "sin|sine", &::p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

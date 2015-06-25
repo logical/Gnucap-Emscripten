@@ -145,7 +145,7 @@ public:
 } p;
 }
 void c_sweep(void){
-static DISPATCHER<CMD>::INSTALL d(&command_dispatcher, "sweep", &p);
+static DISPATCHER<CMD>::INSTALL d(&command_dispatcher, "sweep", &::p);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

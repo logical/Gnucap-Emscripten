@@ -555,7 +555,7 @@ void DEV_TRANSLINE::ac_load()
 DEV_TRANSLINE p1;
 }
 void d_trln(void){
-static DISPATCHER<CARD>::INSTALL d1(&device_dispatcher, "T|tline", &p1);
+static DISPATCHER<CARD>::INSTALL d1(&device_dispatcher, "T|tline", &::p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

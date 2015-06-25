@@ -140,7 +140,7 @@ void DEV_RESISTANCE::do_ac()
 DEV_RESISTANCE p1;
 }
 void d_res(void){
-static DISPATCHER<CARD>::INSTALL d1(&device_dispatcher, "R|resistor", &p1);
+static DISPATCHER<CARD>::INSTALL d1(&device_dispatcher, "R|resistor", &::p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

@@ -141,7 +141,7 @@ void DEV_VCR::do_ac()
 DEV_VCR p1;
 }
 void d_vcr(void){
-static DISPATCHER<CARD>::INSTALL d1(&device_dispatcher, "vcr", &p1);
+static DISPATCHER<CARD>::INSTALL d1(&device_dispatcher, "vcr", &::p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

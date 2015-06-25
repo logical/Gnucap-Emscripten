@@ -143,7 +143,7 @@ void DEV_CCVS::do_ac()
 DEV_CCVS p1;
 }
 void d_ccvs(void){
-static DISPATCHER<CARD>::INSTALL d1(&device_dispatcher, "H|ccvs", &p1);
+static DISPATCHER<CARD>::INSTALL d1(&device_dispatcher, "H|ccvs", &::p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

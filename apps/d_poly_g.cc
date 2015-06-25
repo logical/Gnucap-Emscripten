@@ -265,7 +265,7 @@ void DEV_CPOLY_G::set_parameters(const std::string& Label, CARD *Owner,
 DEV_CPOLY_G p4;
 }
 void d_poly_g(void){
-static DISPATCHER<CARD>::INSTALL d4(&device_dispatcher, "cpoly_g", &p4);
+static DISPATCHER<CARD>::INSTALL d4(&device_dispatcher, "cpoly_g", &::p4);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

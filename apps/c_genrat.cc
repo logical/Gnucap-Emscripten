@@ -85,7 +85,7 @@ public:
 } p;
 }
 void c_genrat(void){
-static DISPATCHER<CMD>::INSTALL d(&command_dispatcher, "generator", &p);
+static DISPATCHER<CMD>::INSTALL d(&command_dispatcher, "generator", &::p);
 }
 /*--------------------------------------------------------------------------*/
 double gen()

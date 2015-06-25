@@ -573,8 +573,8 @@ DEV_INDUCTANCE p2;
 }
 void d_coil(void){
 static DISPATCHER<CARD>::INSTALL
-  d1(&device_dispatcher, "K|mutual_inductor", &p1),
-  d2(&device_dispatcher, "L|inductor",        &p2);
+  d1(&device_dispatcher, "K|mutual_inductor", &::p1),
+  d2(&device_dispatcher, "L|inductor",        &::p2);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

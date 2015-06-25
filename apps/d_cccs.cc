@@ -141,7 +141,7 @@ void DEV_CCCS::do_ac()
 DEV_CCCS p1;
 }
 void d_cccs(void){
-static DISPATCHER<CARD>::INSTALL d1(&device_dispatcher, "F|cccs", &p1);
+static DISPATCHER<CARD>::INSTALL d1(&device_dispatcher, "F|cccs", &::p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

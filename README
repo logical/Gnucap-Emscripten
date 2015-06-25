@@ -38,8 +38,4 @@ The result is only 3.1Mb(the original was 4Mb).In order to get it to compile I h
  
  
  
- 
-
-First the make script will compile the binary using g++. This is necessary because the binary build the models that are needed for emscripten. Next the makefile runs Makeem++. Makeeem++ contains the javascript build configuration.
-
 :)

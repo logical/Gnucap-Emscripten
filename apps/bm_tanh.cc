@@ -146,7 +146,7 @@ bool EVAL_BM_TANH::parse_params_obsolete_callback(CS& cmd)
 EVAL_BM_TANH p1(CC_STATIC);
 }
 void bm_tanh(void){
-static DISPATCHER<COMMON_COMPONENT>::INSTALL d1(&bm_dispatcher, "tanh", &p1);
+static DISPATCHER<COMMON_COMPONENT>::INSTALL d1(&bm_dispatcher, "tanh", &::p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

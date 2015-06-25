@@ -89,7 +89,7 @@ public:
 } p2;
 }
 void measure_min(void){
-static DISPATCHER<FUNCTION>::INSTALL d2(&measure_dispatcher, "min", &p2);
+static DISPATCHER<FUNCTION>::INSTALL d2(&measure_dispatcher, "min", &::p2);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

@@ -53,7 +53,7 @@ public:
 } p0;
 }
 void c_measure(void){
-static DISPATCHER<CMD>::INSTALL d0(&command_dispatcher, "measure", &p0);
+static DISPATCHER<CMD>::INSTALL d0(&command_dispatcher, "measure", &::p0);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

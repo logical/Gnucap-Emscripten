@@ -152,7 +152,7 @@ public:
 } p3;
 }
 void measure_slewrate(void){
-static DISPATCHER<FUNCTION>::INSTALL d3(&measure_dispatcher, "ddt|slewrate|slope", &p3);
+static DISPATCHER<FUNCTION>::INSTALL d3(&measure_dispatcher, "ddt|slewrate|slope", &::p3);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

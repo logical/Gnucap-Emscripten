@@ -69,7 +69,7 @@ public:
 } p1;
 }
 void measure_at(void){
-static DISPATCHER<FUNCTION>::INSTALL d1(&measure_dispatcher, "at", &p1);
+static DISPATCHER<FUNCTION>::INSTALL d1(&measure_dispatcher, "at", &::p1);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

@@ -434,11 +434,11 @@ public:
 }
 void lang_spectre_load(void){
 static DISPATCHER<LANGUAGE>::INSTALL
-	d(&language_dispatcher, lang_spectre.name(), &lang_spectre);
-static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "model", &p1);
-static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "subckt", &p2);
-static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "simulator", &p3);
-static DISPATCHER<CMD>::INSTALL d8(&command_dispatcher, "spectre", &p8);
+	d(&language_dispatcher, lang_spectre.name(), &::lang_spectre);
+static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "model", &::p1);
+static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "subckt", &::p2);
+static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "simulator", &::p3);
+static DISPATCHER<CMD>::INSTALL d8(&command_dispatcher, "spectre", &::p8);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

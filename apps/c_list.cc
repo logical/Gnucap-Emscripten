@@ -123,8 +123,8 @@ public:
 /*--------------------------------------------------------------------------*/
 }
 void c_list(void){
-static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "list", &p1);
-static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "save", &p2);
+static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "list", &::p1);
+static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "save", &::p2);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

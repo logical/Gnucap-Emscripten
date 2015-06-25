@@ -78,9 +78,9 @@ public:
 } p3;
 }
 void c_system(void){
-static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "edit", &p1);
-static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "system|!", &p2);
-static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "chdir|cd", &p3);
+static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "edit", &::p1);
+static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "system|!", &::p2);
+static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "chdir|cd", &::p3);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

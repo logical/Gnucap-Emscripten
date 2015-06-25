@@ -163,8 +163,8 @@ DEV_VCCS       p2;
 }
 void d_admit(void){
 static DISPATCHER<CARD>::INSTALL
-  d1(&device_dispatcher, "Y|admittance", &p1),
-  d2(&device_dispatcher, "G|vccs",       &p2);
+  d1(&device_dispatcher, "Y|admittance", &::p1),
+  d2(&device_dispatcher, "G|vccs",       &::p2);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

@@ -278,7 +278,7 @@ bool AC::next()
 static AC p1;
 }
 void s_ac(void){
-static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "ac", &p1);
+static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "ac", &::p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

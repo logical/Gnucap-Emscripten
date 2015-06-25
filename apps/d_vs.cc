@@ -143,7 +143,7 @@ void DEV_VS::do_ac()
 DEV_VS p1;
 }
 void d_vs(void){
-static DISPATCHER<CARD>::INSTALL d1(&device_dispatcher, "V|vsource", &p1);
+static DISPATCHER<CARD>::INSTALL d1(&device_dispatcher, "V|vsource", &::p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

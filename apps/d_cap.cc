@@ -212,9 +212,9 @@ DEV_VCCAP       p3;
 }
 void d_cap(void){
 static DISPATCHER<CARD>::INSTALL
-  d1(&device_dispatcher, "C|capacitor",	    &p1),
-  d2(&device_dispatcher, "tcap|tcapacitor", &p2),
-  d3(&device_dispatcher, "vccap",	    &p3);
+  d1(&device_dispatcher, "C|capacitor",	    &::p1),
+  d2(&device_dispatcher, "tcap|tcapacitor", &::p2),
+  d3(&device_dispatcher, "vccap",	    &::p3);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

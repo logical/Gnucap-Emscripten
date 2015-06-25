@@ -165,10 +165,10 @@ public:
 } p4;
 }
 void c_modify(void){
-static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "modify|alter", &p1);
-static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "fault", &p2);
-static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "restore", &p3);
-static DISPATCHER<CMD>::INSTALL d4(&command_dispatcher, "unfault", &p4);
+static DISPATCHER<CMD>::INSTALL d1(&command_dispatcher, "modify|alter", &::p1);
+static DISPATCHER<CMD>::INSTALL d2(&command_dispatcher, "fault", &::p2);
+static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "restore", &::p3);
+static DISPATCHER<CMD>::INSTALL d4(&command_dispatcher, "unfault", &::p4);
 /*--------------------------------------------------------------------------*/
 }
 /*--------------------------------------------------------------------------*/

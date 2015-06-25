@@ -297,7 +297,7 @@ DEV_FPOLY_CAP p4;
 }
 void d_poly_cap(void){
 static DISPATCHER<CARD>::INSTALL
-  d4(&device_dispatcher, "fpoly_cap", &p4);
+  d4(&device_dispatcher, "fpoly_cap", &::p4);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

@@ -129,7 +129,7 @@ void DEV_VCVS::do_ac()
 DEV_VCVS p1;
 }
 void d_vcvs(void){
-static DISPATCHER<CARD>::INSTALL d1(&device_dispatcher, "E|vcvs", &p1);
+static DISPATCHER<CARD>::INSTALL d1(&device_dispatcher, "E|vcvs", &::p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/

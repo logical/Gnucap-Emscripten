@@ -353,7 +353,7 @@ static int to_pow_of_2(double Z)
 static FOURIER p3;
 }
 void s_fo(void){
-static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "fourier", &p3);
+static DISPATCHER<CMD>::INSTALL d3(&command_dispatcher, "fourier", &::p3);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
