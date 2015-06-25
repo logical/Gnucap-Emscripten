@@ -21,9 +21,12 @@
  *------------------------------------------------------------------
  * declarations of globals that are exported to plugins
  */
-#include "l_dispatcher.h"
+#ifndef GLOBALS_H_INCLUDED
+#define GLOBALS_H_INCLUDED
 
-extern const char*  lib_version();
+#include "l_dispatcher.h"
+#include "e_cardlist.h"
+
 
 class CMD;
 class COMMON_COMPONENT;
@@ -33,6 +36,7 @@ class LANGUAGE;
 class FUNCTION;
 class CKT_BASE;
 class PROBELIST;
+
 
 extern INTERFACE DISPATCHER<CMD> command_dispatcher;
 extern INTERFACE DISPATCHER<COMMON_COMPONENT> bm_dispatcher;
@@ -46,7 +50,15 @@ extern INTERFACE DISPATCHER<CKT_BASE> help_dispatcher;
 extern INTERFACE DISPATCHER<PROBELIST> probe_dispatcher;
 extern INTERFACE std::string head;
 
-// for the rest, order should not matter, but it is convenient here
-CARD_LIST CARD_LIST::card_list;	// root circuit
 
+extern void u_opt2(void);
+extern void d_subckt(void);
+extern void d_logic(void);
+extern void bm_cond(void);
+extern void bm_value(void);
+extern void c_attach(void);
+extern void c_file(void);
+extern const char*  lib_version();
+
+#endif
 // vim:ts=8:sw=2:noet:
