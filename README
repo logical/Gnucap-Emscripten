@@ -24,7 +24,7 @@ can be extracted and built separately.
 EMSCRIPTEN COMPILE
 -----
 
-THE BUILD IS WORKING.
+THE BUILD IS WORKING BUT STILL IN TESTING.
 
 The result is only 3.1Mb(the original was 4Mb).In order to get it to compile I had to make a few modifications. Emscripten does not do well with dynamic loading.The plugins contain namespaces that are supposed to load objects dynamically but would not work with Emscripten because they either would not load or loaded in the wrong order. to fix the problem I wrapped the DISPATCHER objects in a function and made them static. Then I had to call them in the correct order for all the plugins to load. To remove plugins you have to do 3 things:
 
