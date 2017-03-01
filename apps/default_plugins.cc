@@ -111,7 +111,7 @@ void load_default_plugins(void){
  measure_average();
  measure_rms();
  measure_at();
- //spice_wrapper();
+ spice_wrapper();
 
 
  SIGN_ON sign_on;
