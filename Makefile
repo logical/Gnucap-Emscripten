@@ -1,7 +1,7 @@
 CCP = /home/human/charles/packages/emsdk-portable/emsdk_portable/emscripten/master/em++
 CC = /home/human/charles/packages/emsdk-portable/emsdk_portable/emscripten/master/emcc
 
-OPTIMIZE = -s DISABLE_EXCEPTION_CATCHING=0 -O2
+OPTIMIZE = -s DISABLE_EXCEPTION_CATCHING=0 -O3
 INCLUDES = -Iinclude/
 CFLAGS = -DEMSCRIPTEN -DNDEBUG -DUNIX -Dlinux -DPREDICTOR -DAN_pz -DAN_disto -DAN_noise -DHAS_STDLIB $(OPTIMIZE)
 CPPFLAGS = $(CFLAGS) -std=c++11
