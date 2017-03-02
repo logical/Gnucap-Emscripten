@@ -23,6 +23,10 @@
 /*--------------------------------------------------------------------------*/
 // spice includes
 extern "C" {
+  #ifdef EMSCRIPTEN
+    #include <emscripten.h>
+  #endif
+
   #include <complex.h>
   #define _complex CompleX
   #define NODE NodE
@@ -1900,6 +1904,10 @@ int MODEL_SPICE::_count = -1;
 int DEV_SPICE::_count = -1;
 
 static DEV_SPICE p0;
+
+#ifdef EMSCRIPTEN
+  EMSCRIPTEN_KEEPALIVE
+#endif 
 void spice_wrapper(void){
 static DISPATCHER<CARD>::INSTALL
   d0(&device_dispatcher, std::string(SPICE_LETTER) + "|" + DEVICE_TYPE, &p0);

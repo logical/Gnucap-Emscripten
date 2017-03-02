@@ -1,3 +1,6 @@
+#ifdef EMSCRIPTEN
+#include <emscripten.h>
+#endif
 #include "globals.h"
 
 
@@ -75,7 +78,13 @@ extern void measure_integral(void);
 extern void measure_average(void);
 extern void measure_rms(void);
 extern void measure_at(void);
-extern void spice_wrapper(void);
+
+extern
+#ifdef EMSCRIPTEN 
+EMSCRIPTEN_KEEPALIVE
+#endif
+void 
+spice_wrapper(void);
 
 
 

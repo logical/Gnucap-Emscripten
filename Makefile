@@ -1,9 +1,9 @@
-CCP = em++
-CC = emcc
+CCP = /home/human/charles/packages/emsdk-portable/emsdk_portable/emscripten/master/em++
+CC = /home/human/charles/packages/emsdk-portable/emsdk_portable/emscripten/master/emcc
 
 OPTIMIZE = -s DISABLE_EXCEPTION_CATCHING=0 -O3
 INCLUDES = -Iinclude/
-CFLAGS = -DEMSCRIPTEN -DNDEBUG -DUNIX -Dlinux -DSPICE_3f -DPREDICTOR -DAN_pz -DAN_disto -DAN_noise -DHAS_STDLIB $(OPTIMIZE)
+CFLAGS = -DEMSCRIPTEN -DNDEBUG -DUNIX -Dlinux -DPREDICTOR -DAN_pz -DAN_disto -DAN_noise -DHAS_STDLIB $(OPTIMIZE)
 CPPFLAGS = $(CFLAGS) -std=c++11
 
 
@@ -76,7 +76,7 @@ clear-cache:
 	-emcc --clear-cache
 
 javascript: clear-cache main/O/main.bc lib/O/libgnucap.bc apps/O/libgnucap-default-plugins.bc models-spice3f5/jfet/O/d_jfet.bc
-	$(CCP) $(OPTIMIZE) main/O/main.bc lib/O/libgnucap.bc apps/O/libgnucap-default-plugins.bc models-spice3f5/jfet/O/d_jfet.bc -o main/O/gnucap.bc #--pre-js pre.js 
+	$(CCP) $(OPTIMIZE) models-spice3f5/jfet/O/d_jfet.bc apps/O/libgnucap-default-plugins.bc main/O/main.bc lib/O/libgnucap.bc -o main/O/gnucap.bc #--pre-js pre.js 
 	$(CCP) --memory-init-file 0 $(OPTIMIZE) main/O/gnucap.bc -o main/O/gnucap.html #--pre-js pre.js 
 
 
