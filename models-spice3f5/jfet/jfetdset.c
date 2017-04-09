@@ -3,6 +3,7 @@ Copyright 1990 Regents of the University of California.  All rights reserved.
 Author: 1988 Jaijeet S Roychowdhury
 **********/
 
+
 #include "spice.h"
 #include <stdio.h>
 #include "util.h"
@@ -15,6 +16,8 @@ Author: 1988 Jaijeet S Roychowdhury
 #include "devdefs.h"
 #include "suffix.h"
 
+#include <emscripten.h>
+EMSCRIPTEN_KEEPALIVE
 int
 JFETdSetup(inModel,ckt)
     GENmodel *inModel;

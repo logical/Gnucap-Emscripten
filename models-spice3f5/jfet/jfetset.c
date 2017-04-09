@@ -6,6 +6,7 @@ Sydney University mods Copyright(c) 1989 Anthony E. Parker, David J. Skellern
 	Sydney University Department of Electrical Engineering, Australia
 **********/
 
+
 #include "spice.h"
 #include <stdio.h>
 #include "util.h"
@@ -16,6 +17,10 @@ Sydney University mods Copyright(c) 1989 Anthony E. Parker, David J. Skellern
 #include "sperror.h"
 #include "suffix.h"
 
+
+
+#include <emscripten.h>
+EMSCRIPTEN_KEEPALIVE
 int
 JFETsetup(matrix,inModel,ckt,states)
     register SMPmatrix *matrix;
@@ -147,6 +152,7 @@ if((here->ptr = SMPmakeElt(matrix,here->first,here->second))==(double *)NULL){\
     }
     return(OK);
 }
+
 
 int
 JFETunsetup(inModel,ckt)

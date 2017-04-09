@@ -5,6 +5,7 @@ Author: 1985 Thomas L. Quarles
 /*
  */
 
+
 #include "spice.h"
 #include <stdio.h>
 #include "const.h"
@@ -16,6 +17,10 @@ Author: 1985 Thomas L. Quarles
 
 
 /* ARGSUSED */
+
+
+#include <emscripten.h>
+EMSCRIPTEN_KEEPALIVE
 int
 JFETparam(param,value,inst,select)
     int param;

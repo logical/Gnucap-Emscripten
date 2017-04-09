@@ -6,6 +6,7 @@ Sydney University mods Copyright(c) 1989 Anthony E. Parker, David J. Skellern
 	Sydney University Department of Electrical Engineering, Australia
 **********/
 
+
 #include "spice.h"
 #include <stdio.h>
 #include "util.h"
@@ -17,6 +18,11 @@ Sydney University mods Copyright(c) 1989 Anthony E. Parker, David J. Skellern
 #include "devdefs.h"
 #include "suffix.h"
 
+
+
+
+#include <emscripten.h>
+EMSCRIPTEN_KEEPALIVE
 int
 JFETload(inModel,ckt)
     GENmodel *inModel;

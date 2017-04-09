@@ -15,6 +15,9 @@ Author: 1985 Thomas L. Quarles
 #include "suffix.h"
 
 
+
+#include <emscripten.h>
+EMSCRIPTEN_KEEPALIVE
 int
 JFETmParam(param,value,inModels)
     int param;

@@ -1,4 +1,4 @@
-/* $Id: spice-wrapper.cc 2014/11/23$ -*- C++ -*-
+/* $Id: spice-wrapper.cc 2016/03/29 al $ -*- C++ -*-
  * Copyright (C) 2007 Albert Davis
  * Author: Albert Davis <aldavis@gnu.org>
  *
@@ -22,12 +22,9 @@
 // code style comment:  Use of "reinterpret_cast" is always bad style.
 /*--------------------------------------------------------------------------*/
 // spice includes
-extern "C" {
-  #ifdef EMSCRIPTEN
-    #include <emscripten.h>
-  #endif
 
-  #include <complex.h>
+extern "C" {
+
   #define _complex CompleX
   #define NODE NodE
   #define public PubliC
@@ -222,7 +219,7 @@ protected: // override virtual
   int	  net_nodes()const	{return _net_nodes;}
   int	  int_nodes()const	{return INTERNAL_NODES;}
   CARD*	  clone()const		{return new DEV_SPICE(*this);}
-  void	  precalc_first();
+  //void  precalc_first();	//ELEMENT
   void	  expand();
   void	  precalc_last();
   //void  map_nodes();		//ELEMENT
@@ -1008,9 +1005,14 @@ void DEV_SPICE::expand()
   assert_instance();
 }
 /*--------------------------------------------------------------------------*/
-void DEV_SPICE::precalc_first()
+void DEV_SPICE::precalc_last()
 {
-  STORAGE::precalc_first();
+  assert(_model);
+  assert_instance();
+  assert(info.DEVsetup);
+
+  STORAGE::precalc_last();
+  init_ckt();
 
   // push down parameters into spice data
   COMMON_SUBCKT* c = dynamic_cast<COMMON_SUBCKT*>(mutable_common());
@@ -1025,16 +1027,6 @@ void DEV_SPICE::precalc_first()
     }else{
     }
   }
-}
-/*--------------------------------------------------------------------------*/
-void DEV_SPICE::precalc_last()
-{
-  assert(_model);
-  assert_instance();
-  assert(info.DEVsetup);
-
-  STORAGE::precalc_last();
-  init_ckt();
 
   int* node = spice_nodes(); // treat as array	//
   int  node_stash[MATRIX_NODES];			//
@@ -1306,7 +1298,7 @@ void DEV_SPICE::tr_load()
 
   int ihit[MATRIX_NODES+OFFSET];
   int jhit[MATRIX_NODES+OFFSET];
-  double real,imag;
+
   std::fill_n(ihit, matrix_nodes()+OFFSET, 0);
   std::fill_n(jhit, matrix_nodes()+OFFSET, 0);
 
@@ -1325,9 +1317,7 @@ void DEV_SPICE::tr_load()
 	  int njj = nj-OFFSET;
 	  trace2("", jj, nj);
 	  trace2("", _matrix[nii][njj].real(), _matrix[nii][njj].imag());
-	  real = _matrix[nii][njj].real();
-	  imag = _matrix[nii][njj].imag();
-	  tr_load_point(_n[ii], _n[jj], &real, &imag);
+	  tr_load_point(_n[ii], _n[jj], _matrix[nii][njj].realp(), _matrix[nii][njj].imagp());
 	}else{
 	  trace2("skip", jj, nj);
 	}
@@ -1343,7 +1333,7 @@ void DEV_SPICE::tr_unload()
 
   for (int ii = 0; ii < matrix_nodes(); ++ii) {untested();
     for (int jj = 0; jj < matrix_nodes(); ++jj) {untested();
-      _matrix[ii][jj].real(0);
+      _matrix[ii][jj].real(0) ;
     }
   }
   _sim->mark_inc_mode_bad();
@@ -1887,11 +1877,8 @@ static struct COMPLEX_TEST {
   COMPLEX_TEST() {
     COMPLEX x;
     COMPLEX* px = &x;
-    double real,imag;
-    real=x.real();
-    imag=x.imag();
-    double* prx = &real;
-    double* pix = &imag;
+    double* prx = x.realp();
+    double* pix = x.imagp();
     assert(reinterpret_cast<void*>(prx) == reinterpret_cast<void*>(px));
     assert(reinterpret_cast<void*>(pix-1) == reinterpret_cast<void*>(px));
   }
@@ -1904,18 +1891,16 @@ int MODEL_SPICE::_count = -1;
 int DEV_SPICE::_count = -1;
 
 static DEV_SPICE p0;
+static MODEL_SPICE p1(&p0);
 
-#ifdef EMSCRIPTEN
-  EMSCRIPTEN_KEEPALIVE
-#endif 
 void spice_wrapper(void){
 static DISPATCHER<CARD>::INSTALL
   d0(&device_dispatcher, std::string(SPICE_LETTER) + "|" + DEVICE_TYPE, &p0);
 
-static MODEL_SPICE p1(&p0);
 static DISPATCHER<MODEL_CARD>::INSTALL
   d1(&model_dispatcher, MODEL_TYPE, &p1);
 }
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
 // vim:ts=8:sw=2:noet:
+

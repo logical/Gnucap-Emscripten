@@ -3,6 +3,7 @@ Copyright 1990 Regents of the University of California.  All rights reserved.
 Author: 1987 Gary W. Ng
 **********/
 
+
 #include "spice.h"
 #include <stdio.h>
 #include "jfetdefs.h"
@@ -25,6 +26,9 @@ Author: 1987 Gary W. Ng
 extern void   NevalSrc();
 extern double Nintegrate();
 
+
+#include <emscripten.h>
+EMSCRIPTEN_KEEPALIVE
 int
 JFETnoise (mode, operation, genmodel, ckt, data, OnDens)
     int mode;

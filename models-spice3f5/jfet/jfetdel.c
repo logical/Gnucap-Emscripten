@@ -12,7 +12,8 @@ Author: 1985 Thomas L. Quarles
 #include "sperror.h"
 #include "suffix.h"
 
-
+#include <emscripten.h>
+EMSCRIPTEN_KEEPALIVE
 int
 JFETdelete(inModel,name,inst)
     GENmodel *inModel;

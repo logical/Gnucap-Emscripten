@@ -13,6 +13,8 @@ Sydney University mods Copyright(c) 1989 Anthony E. Parker, David J. Skellern
 #include "jfetdefs.h"
 #include "suffix.h"
 
+
+
 IFparm JFETpTable[] = { /* device parameters */ 
  IOPU("off",         JFET_OFF,            IF_FLAG,   "Device initially off"),
  IOPAU("ic",          JFET_IC,             IF_REALVEC,"Initial VDS,VGS vector"),

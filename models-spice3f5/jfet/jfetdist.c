@@ -12,6 +12,9 @@ Author: 1988 Jaijeet S Roychowdhury
 #include "distodef.h"
 #include "suffix.h"
 
+
+#include <emscripten.h>
+EMSCRIPTEN_KEEPALIVE
 int
 JFETdisto(mode,genmodel,ckt)
  GENmodel *genmodel;

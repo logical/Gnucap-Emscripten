@@ -12,8 +12,8 @@ Author: 1985 Thomas L. Quarles
 #include "jfetdefs.h"
 #include "sperror.h"
 #include "suffix.h"
-
-
+#include <emscripten.h>
+EMSCRIPTEN_KEEPALIVE
 int
 JFETacLoad(inModel,ckt)
     GENmodel *inModel;

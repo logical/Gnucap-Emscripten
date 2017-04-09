@@ -8,6 +8,7 @@ Sydney University mods Copyright(c) 1989 Anthony E. Parker, David J. Skellern
 /*
  */
 
+
 #include "spice.h"
 #include <stdio.h>
 #include "const.h"
@@ -20,6 +21,8 @@ Sydney University mods Copyright(c) 1989 Anthony E. Parker, David J. Skellern
 
 
 /*ARGSUSED*/
+#include <emscripten.h>
+EMSCRIPTEN_KEEPALIVE
 int
 JFETmAsk(ckt,inModel,which,value)
     CKTcircuit *ckt;

@@ -5,6 +5,7 @@ Author: 1985 Thomas L. Quarles
 /*
  */
 
+
 #include "spice.h"
 #include <stdio.h>
 #include "util.h"
@@ -13,6 +14,8 @@ Author: 1985 Thomas L. Quarles
 #include "suffix.h"
 
 
+#include <emscripten.h>
+EMSCRIPTEN_KEEPALIVE
 int
 JFETmDelete(inModel,modname,kill)
     GENmodel **inModel;

@@ -79,12 +79,7 @@ extern void measure_average(void);
 extern void measure_rms(void);
 extern void measure_at(void);
 
-extern
-#ifdef EMSCRIPTEN 
-EMSCRIPTEN_KEEPALIVE
-#endif
-void 
-spice_wrapper(void);
+extern void spice_wrapper(void);
 
 
 

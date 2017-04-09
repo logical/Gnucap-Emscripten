@@ -5,6 +5,7 @@ Author: 1987 Mathew Lew and Thomas L. Quarles
 /*
  */
 
+
 #include "spice.h"
 #include <stdio.h>
 #include "const.h"
@@ -18,6 +19,8 @@ Author: 1987 Mathew Lew and Thomas L. Quarles
 
 
 /*ARGSUSED*/
+#include <emscripten.h>
+EMSCRIPTEN_KEEPALIVE
 int
 JFETask(ckt,inst,which,value,select)
     CKTcircuit *ckt;
